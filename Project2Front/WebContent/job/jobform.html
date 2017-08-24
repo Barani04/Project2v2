@@ -1,0 +1,69 @@
+<link href="css/style.css" rel="stylesheet">
+<div class="card">
+		<div class="card-header">
+			<div class="center-align white-text teal lighten-2" style="font-weight:400; font-size:30px;">Post Job</div>
+		</div>
+		<form class="form-horizontal">
+			<div class="row">
+        		<div class="input-field col s8 offset-s2">
+          			<input id="icon_prefix" type="text" class="validate" ng-model="job.jobTitle">
+          			<label for="icon_prefix">Title</label>
+        		</div>
+			</div>
+			<div class="row">
+        		<div class="input-field col s8 offset-s2">
+					<textarea id="textarea1" ng-model="job.jobDescription" class="materialize-textarea"></textarea>
+          			<label for="textarea1">Description</label>
+        		</div>
+      		</div>
+			<div class="row">
+				<div class="input-field col s8 offset-s2">
+				<input id="text" type="text" ng-model="job.skillRequired">
+				<label for="skill">Skills Required</label>	
+    			</div>
+  			</div>
+  			<div class="row">
+				<div class="input-field col s5 offset-s2">
+    				<select ng-model="job.yrsOfExp">
+						<option value="" disabled selected>Required Experience</option>
+						<option ng-repeat="y in exp">{{y}}</option>
+						
+					</select>
+					
+					<label>Year Of Experience</label>
+					
+				</div>
+			</div>
+			<div class="row">
+				
+			</div>
+			<div class="row">
+				<div class="input-field col s8 offset-s2">
+					<input id="text" ng-model="job.salary" type="text">
+					<label for="salary">Salary</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s8 offset-s2">
+					<input type="text" ng-model="job.companyName" id="company">
+					<label for="company">Company Name</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s8 offset-s2">
+					<input type="text" ng-model="job.location" id="location">
+					<label for="location">Location</label>
+				</div>
+			</div>
+			<div class="card-action center-align">
+			 	<button class="btn waves-effect waves-light" type="submit" ng-click="saveJob()">Submit
+    				<i class="material-icons right">send</i>
+  				</button>
+			</div>
+		</form>
+	</div>
+	<script type="text/javascript">
+		$(document).ready(function() {
+    		$('select').material_select();
+  		});	
+	</script>

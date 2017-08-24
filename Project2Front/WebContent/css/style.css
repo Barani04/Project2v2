@@ -1,0 +1,47 @@
+/* YOUR CUSTOM STYLES */
+.card{
+	
+	width:650px;
+	margin-left:auto;
+	margin-right: auto;
+	position:relative;
+
+}
+
+#alert_danger{
+	border-radius:8px;
+	font-weight:200;
+	margin-left:auto;
+	margin-right:auto;
+	width:600px;
+	border:1px solid red;
+	color:#ff1a1a;
+	text-align: center;
+	background-color:#ffcccc;
+}
+
+#alert_box_success{
+	border:1px solid green;
+	border-radius:8px;
+	font-weight:200;
+	margin-left:auto;
+	margin-right:auto;
+	width:600px;
+	text-align: center;
+	background-color:#99ff99;
+	color:#009900;
+}
+
+.animated{
+	animation-duration:3s;
+}
+
+
+#toast-container {
+    top: auto;
+    right: auto;
+    bottom: 10%;
+    left: 45%;
+    max-width: 86%;
+}
+

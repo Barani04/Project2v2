@@ -1,0 +1,32 @@
+<div ng-show="currentUser.role=='ADMIN'">
+<h4>List of Blogs Waiting For Approval</h4>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Title</th><th>Author</th><th>Posted On</th><th>Action</th>
+		</tr>
+	</thead>
+	<tbody ng-controller="BlogController as bc">
+		<tr ng-repeat="blog in blogsWaitingForApproval">
+			<td><a href="" ng-click="bc.getBlog(blog)">{{blog.blogTitle}}</a></td>
+			<td>{{blog.postedBy.username}}</td>
+			<td>{{blog.postedOn | date:'dd/MM/yyyy'}}</td>
+			<td>
+				 <div class="switch">
+                 	<label>
+                  		Disable
+                  		<input type="checkbox" ng-model="blog.approved" ng-change="changeblogStatus(blog.bid)">
+                 		<span class="lever"></span>
+                  		Active
+                  	</label>
+                </div>
+			</td>
+		</tr>
+		<tr ng-show="mess!=null">
+			<td colspan=4 style="color:#ff6666;"><h3>{{mess}}</h3></td>
+		</tr>
+	</tbody>
+</table>
+
+
+</div>

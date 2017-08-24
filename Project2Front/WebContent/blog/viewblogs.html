@@ -1,0 +1,15 @@
+<h4 ng-show="currentUser.firstname">Blogs</h4>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Title</th><th>Author</th><th>Posted On</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="blog in blogsApproved">
+			<td><a href="" ng-click="getBlog(blog)">{{blog.blogTitle}}</a></td>
+			<td>{{blog.postedBy.username}}</td>
+			<td>{{blog.postedOn | date:'dd/MM/yyyy'}}</td>
+		</tr>
+	</tbody>
+</table>

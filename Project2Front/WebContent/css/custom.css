@@ -1,0 +1,37 @@
+/*my css*/
+
+.content{
+	margin-top: 70px;
+	
+}
+.wrapper{
+	height: 50px;
+	opacity:0.6;
+	
+}
+.wrapper a{
+	padding-right:15px;
+
+}
+nav{
+	height:50px;
+	line-height: 50px;
+}
+
+nav .brand-logo{
+	font-size: 1.7rem;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+  
+.page-footer{
+	background-color:  #b3b3ff;
+}

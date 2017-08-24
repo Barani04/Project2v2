@@ -1,0 +1,27 @@
+<link href="css/style.css" rel="stylesheet">
+<div class="card hoverable">
+	<div class="card-header">
+		<div class="center-align white-text teal lighten-2"
+			style="font-weight: 400; font-size: 30px;">Add Blog</div>
+	</div>
+	<form class="form-horizontal">
+		<div class="row">
+			<div class="input-field col s8 offset-s2">
+				<input id="icon_prefix" type="text" class="validate"
+					ng-model="blog.blogTitle"> <label for="icon_prefix">Title</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s8 offset-s2">
+				<textarea id="textarea1" ng-model="blog.description"
+					class="materialize-textarea"></textarea>
+				<label for="textarea1">Description</label>
+			</div>
+		</div>
+		<div class="card-action center-align">
+			 	<button class="btn waves-effect waves-light" type="submit" ng-click="addBlog()">Submit
+    				<i class="material-icons right">send</i>
+  				</button>
+			</div>
+	</form>
+</div>
