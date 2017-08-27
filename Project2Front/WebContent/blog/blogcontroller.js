@@ -37,6 +37,7 @@ app.controller('BlogController',function(BlogService,$scope,$location,$route,$ro
 	$rootScope.getBlog=function(blog){
 		BlogService.getBlog(blog.bid).then(function(response){
 			$rootScope.vb=response.data
+			console.log($rootScope.vb)
 			$cookieStore.put("vb",response.data)
 			$location.path('/viewblog')
 		},function(response){

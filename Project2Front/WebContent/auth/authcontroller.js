@@ -7,7 +7,7 @@ app.controller('AuthController',function(AuthService,UserService,BlogService,$sc
 	
 	$scope.registerUser=function(){
 		AuthService.registerUser($scope.user).then(function(response) {
-			$rootScope.message='Registered Successfully...Wait for your Account Activation Mail'
+			$rootScope.notify='Registered Successfully...Wait for your Account Activation Mail'
 			$location.path('/signup')	
 		},function(response){
 			console.log(response.status)

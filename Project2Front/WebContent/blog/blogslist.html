@@ -6,9 +6,9 @@
 			<th>Title</th><th>Author</th><th>Posted On</th><th>Action</th>
 		</tr>
 	</thead>
-	<tbody ng-controller="BlogController as bc">
+	<tbody ng-controller="BlogController">
 		<tr ng-repeat="blog in blogsWaitingForApproval">
-			<td><a href="" ng-click="bc.getBlog(blog)">{{blog.blogTitle}}</a></td>
+			<td><a href="" ng-click="getBlog(blog)">{{blog.blogTitle}}</a></td>
 			<td>{{blog.postedBy.username}}</td>
 			<td>{{blog.postedOn | date:'dd/MM/yyyy'}}</td>
 			<td>

@@ -3,7 +3,7 @@
           <div class="card">
             <div class="card-content">
               <h3 class="card-title">{{vb.blogTitle}}</h3>
-              <h4>{{vb.postedBy.username}}</h4>
+              <h4>{{vb.postedBy.username}} | {{vb.postedOn | date:dd/MM/yyyy}}</h4>
               <p>{{vb.description}}</p>
             </div>
             <!-- <div class="card-action">
