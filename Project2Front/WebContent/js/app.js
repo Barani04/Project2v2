@@ -65,7 +65,7 @@ app.config(function($routeProvider) {
 	})
 	
 })
-app.run(function(AuthService,BlogService,$rootScope,$cookieStore,$location) {
+app.run(function(AuthService,$rootScope,$cookieStore,$location) {
 	if($rootScope.currentUser==undefined){
 		$rootScope.currentUser = $cookieStore.get("currentUser")
 	}
@@ -76,6 +76,7 @@ app.run(function(AuthService,BlogService,$rootScope,$cookieStore,$location) {
 	if($rootScope.vb==undefined){
 		$rootScope.vb=$cookieStore.get("vb")
 	}
+	
 		$rootScope.logout=function(){
 			AuthService.logout().then(function(response) {
 			$rootScope.message='Logged Out Successfully'

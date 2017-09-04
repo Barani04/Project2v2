@@ -27,5 +27,12 @@ app.factory('BlogService',function($http){
 		return $http.post(BASE_URL+"/approveblog/"+id)
 	}
 	
+	blogService.addComment=function(blogComment){
+		return $http.post(BASE_URL+"/addblogcomment",blogComment)
+	}
+	
+	blogService.getBlogComments=function(id){
+		return $http.get(BASE_URL+"/getallblogcomments/"+id)
+	}
 	return blogService;
 })

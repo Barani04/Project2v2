@@ -34,7 +34,7 @@ app.controller('BlogController',function(BlogService,$scope,$location,$route,$ro
 		})
 	}
 	
-	$rootScope.getBlog=function(blog){
+	$scope.getBlog=function(blog){
 		BlogService.getBlog(blog.bid).then(function(response){
 			$rootScope.vb=response.data
 			console.log($rootScope.vb)
@@ -47,4 +47,37 @@ app.controller('BlogController',function(BlogService,$scope,$location,$route,$ro
 			}
 		})
 	}
+	
+	$scope.addComment=function(){
+		
+		$scope.blogComment.blog=$rootScope.vb
+		console.log($scope.blogComment)
+		BlogService.addComment($scope.blogComment).then(function(response){
+			$scope.blogComment.commentText=''
+			console.log(response.data)
+			getBlogComments()
+		},function(response){
+			if(response.status==401){
+				$location.path('/viewblog')
+			}
+		})
+		
+	}
+	
+	function getBlogComments(){	
+		BlogService.getBlogComments($rootScope.vb.bid).then(function(response){
+			if(response.data == null){
+				$scopecope.note="No Comments Yet...!"
+			}
+			$scope.blogcomments = response.data
+		},function(response){
+			if(response.status==401){
+				$scope.error=response.data
+				$location.path('/viewblog')
+			}
+		})
+	}
+	getBlogComments()
+	
+	
 })

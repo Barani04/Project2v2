@@ -1,12 +1,24 @@
 <link href="css/style.css" rel="stylesheet">
+<style type="text/css">
+	span{
+		
+		font-size:13px !important;
+		color:red !important;
+		margin-left:50px;
+	}
+	.form-horizontal input.ng-dirty.ng-invalid.ng-minlength.ng-maxlength.ng-required.ng-pattern {
+  border-color: #e9322d;
+}
+</style>
 <div ng-if="notify !=null" class="text-center animated fadeOut" id="alert_box_success" >
 		<p>{{notify}}</p>
 </div>
 <div ng-if="error.message !=null" class="text-center animated fadeOut" id="alert_danger">
 	<p>{{error.message}}</p>
 </div>
+
 <div class="card hoverable">
-	<form class="form-horizontal">
+	<form class="form-horizontal" name="reg">
 			<div class="card-header">
 				<div class="center-align white-text teal lighten-2" style="font-weight:400; font-size:30px;">Register</div>
 			</div>
@@ -14,37 +26,49 @@
 				<div class="row">
 					<div class="input-field col s6">
 						<i class="material-icons prefix grey-text text-lighten-1">account_circle</i>
-						<input id="username" type="text" class="validate" ng-model="user.username">
+						<input id="username" type="text" class="username" name="username" ng-model="user.username" required ng-minlength="4" ng-maxlength="8">
 						<label for="username">User Name</label>
+						<span ng-show="reg.username.$dirty && reg.username.$error.required">Username cannot be Empty</span>
+						<span ng-show="reg.username.$dirty && reg.username.$error.minlength">Minimum length should be 4</span>
+						<span ng-show="reg.username.$dirty && reg.username.$error.maxlength">Maximum length should be 8</span>
 					</div>
 					<div class="input-field col s6">
 						<i class="material-icons prefix grey-text text-lighten-1">lock_outline</i>
-						<input id="password" type="password" class="validate" ng-model="user.password">
+						<input id="password" type="password" class="password" name="password" ng-model="user.password" required ng-minlength="3" ng-maxlength="6">
 						<label for="password">Password</label>
+						<span ng-show="reg.password.$dirty && reg.password.$error.required">Password cannot be empty</span>
+						<span ng-show="reg.password.$dirty && reg.password.$error.minlength">Minimum length should be 3</span>
+						<span ng-show="reg.password.$dirty && reg.password.$error.maxlength">Maximum length should be 6</span>
 					</div>
 				</div>
 				<div class="row">
 					<div class="input-field col s6">
-						<input id="firstname" type="text" class="validate" ng-model="user.firstname">
+						<input id="firstname" type="text" class="firstname" name="firstname" ng-model="user.firstname" required>
 						<label for="firstname">First Name</label>
+						<span ng-show="reg.firstname.$dirty && reg.firstname.$error.required">Firstname cannot be empty</span>	
 					</div>
 					<div class="input-field col s6">
-						<input id="lastname" type="text" class="validate" ng-model="user.lastname">
+						<input id="lastname" type="text" class="lastname" name="lastname" ng-model="user.lastname">
 						<label for="lastname">Last Name</label>
+						<span ng-show="reg.lastname.$dirty && reg.lastname.$invalid">This field is invalid</span>
 					</div>
 				</div>
 				<div class="row">
 					<div class="input-field col s12">
 						<i class="material-icons prefix grey-text text-lighten-1">mail</i>
-						<input id="email" type="email" class="validate"  ng-model="user.email">
+						<input id="email" type="email" class="email" name="email"  ng-model="user.email" required ng-pattern="/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/">
 						<label for="email">Email</label>
+						<span ng-show="reg.email.$dirty && reg.email.$error.required">This field is invalid</span>
+						<span ng-show="reg.email.$dirty && reg.email.$error.pattern">Invalid Email Address</span>
 					</div>
 				</div>
 				<div class="row">
 					<div class="input-field col s12">
 						<i class="material-icons prefix grey-text text-lighten-1">phone</i>
-						<input id="phone" type="text" class="validate" ng-model="user.phonenumber">
+						<input id="phone" type="text" class="phonenum" name="phonenumber" ng-model="user.phonenumber" required ng-minlength="10" ng-maxlength="10">
 						<label for="phone">Phone Number</label>
+						<span ng-show="reg.phonenumber.$dirty && reg.phonenumber.$error.required">Phone Number should not be empty</span>
+						<span ng-show="reg.phonenumber.$dirty && reg.phonenumber.$error.minlength ||reg.phonenumber.$error.maxlength ">Phone Number should not be empty</span>
 					</div>
 				</div>
 				<div class="row" style="padding-left:50px;">
@@ -57,7 +81,7 @@
 				</div>
 				
 				<div class="card-action center-align">
-			 		<button class="btn waves-effect waves-teal" type="submit" ng-click="registerUser()">Submit
+			 		<button class="btn waves-effect waves-teal" type="submit" ng-click="registerUser()" ng-disabled="reg.$invalid">Submit
     				<i class="material-icons right">send</i></button>
 				</div>
 			</div>

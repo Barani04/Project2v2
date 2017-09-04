@@ -1,15 +1,44 @@
 <div class="row">
-        <div class="col s12 m6">
-          <div class="card">
-            <div class="card-content">
-              <h3 class="card-title">{{vb.blogTitle}}</h3>
-              <h4>{{vb.postedBy.username}} | {{vb.postedOn | date:dd/MM/yyyy}}</h4>
-              <p>{{vb.description}}</p>
-            </div>
-            <!-- <div class="card-action">
-              <a href="#">This is a link</a>
-              <a href="#">This is a link</a>
-            </div> -->
-          </div>
-        </div>
-      </div>
+	<div class="col s12 m12">
+		<div class="card">
+			<div class="card-content">
+				<div style="font-size:30px;font-weight: bolder; " class="card-title">{{vb.blogTitle}}</div>
+				<h6>{{vb.postedBy.username}} | {{vb.postedOn |
+					date:dd/MM/yyyy}}</h6>
+				<hr>
+				<p>{{vb.description}}</p>
+			</div>
+
+		</div>
+	</div>
+</div>
+<div ng-show="vb.approved==1">
+<h3 class="center-align">Comments</h3>
+<div style="margin-top:5px;" class="card">
+	<div class="card-content">
+		<div style="margin-top:5px;width:600px;" class="card" ng-repeat="bc in blogcomments | orderBy:'commentedOn'">
+			<div class="card-content" ng-show="note != null">
+				<p><h3>{{note}}</h3></p>
+			</div>
+			<div class="card-content" ng-show="note == null">
+				<p style="font-size:20px;font-weight: bold;">{{bc.commentedBy.username}} | {{bc.commentedOn | date:'dd/MM/yyyy'}}</p>
+				<hr>
+				<p>{{bc.commentText}}<p>
+			</div>
+		</div>
+	<div class="card-action">
+		<form>
+				<div  class="row">
+					<div class="input-field col s8 ">
+						<textarea id="commenttext" ng-model="blogComment.commentText"
+							class="materialize-textarea"></textarea>
+						<label for="commenttext">Comment</label>
+					</div>
+			 	<button style="margin-top:60px;" class="btn waves-effect waves-light" type="submit" ng-click="addComment()">Save
+  				</button>
+			</div>
+		</form>
+	</div>
+	</div>
+</div>
+</div>
