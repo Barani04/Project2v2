@@ -26,6 +26,17 @@ app.config(function($routeProvider) {
 	
 	})
 	
+	.when('/getsuggestedusers',{
+		templateUrl:'Friend/suggestedusers.html',
+		controller:'FriendController'
+	
+	})
+	
+	.when('/profilepic',{
+		templateUrl:'auth/profilepic.html',
+			controller:'AuthController'
+	})
+	
 	.when('/getalljobs',{
 		templateUrl:'job/jobspage.html',
 		controller:'JobController'

@@ -1,0 +1,29 @@
+<p style="font-size: 30px; margin-top:0px;">Suggested Users</p>
+<div class="row">
+	<div style="width: 350px; margin-left: 10px;"
+		class="card animated hoverable col s3"
+		ng-repeat="user in suggestedusers">
+		<table class="card-content table">
+			<tr>
+				<td><img height="80" width="80" class="circle" style="border:2px dashed #ccc "/></td>
+				<td>
+					<table>
+						<tr>
+							<td style="font-size: 20px;  padding-bottom:0px;  padding-top:0px;"><b>User Name : </b>{{user.username}}</td>
+							</tr>
+							<tr>
+							<td style="font-size: 20px; padding-bottom:0px; padding-top:0px;"><b>Role : </b>{{user.role}}</td>
+							</tr>
+							<tr>
+							<td style="font-size: 20px; padding-bottom:0px; padding-top:0px;"><b>Online Status : </b><span ng-if="user.online">Online</span>
+							<span ng-if="!user.online">Offline</span></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<div class="card-action center-align">
+			<a class="btn btn-success">Send Friend Request</a>
+		</div>
+	</div>
+</div>

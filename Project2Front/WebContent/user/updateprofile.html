@@ -1,61 +1,68 @@
 <link href="css/style.css" rel="stylesheet">
-<div ng-if="error.message !=null" class="text-center animated fadeOut" id="alert_danger">
+<div ng-if="error.message !=null" class="text-center animated fadeOut"
+	id="alert_danger">
 	<p>{{error.message}}</p>
 </div>
 <div class="card animated bounceIn">
 	<form class="form-horizontal">
-			<div class="card-header">
-				<div class="center-align white-text teal lighten-2" style="font-weight:400; font-size:30px;">Update Profile</div>
+		<div class="card-header">
+			<div class="center-align white-text teal lighten-2"
+				style="font-weight: 400; font-size: 30px;">Update Profile</div>
+		</div>
+		<div class="card-body">
+			<div class="row">
+				<div class="input-field col s6">
+					<i class="material-icons prefix grey-text text-lighten-1 active">account_circle</i>
+					<input id="username" type="text" class="validate"
+						ng-model="user.username" disabled> <label for="username"
+						class="active">User Name</label>
+				</div>
+				<div class="input-field col s6">
+					<i class="material-icons prefix grey-text text-lighten-1 active">lock_outline</i>
+					<input id="password" type="password" class="validate"
+						ng-model="user.password"> <label for="password"
+						class="active">Password</label>
+				</div>
 			</div>
-			<div class="card-body">
-				<div class="row">
-					<div class="input-field col s6">
-						<i class="material-icons prefix grey-text text-lighten-1 active">account_circle</i>
-						<input id="username" type="text" class="validate"  ng-model="user.username" disabled>
-						<label for="username" class="active">User Name</label>
-					</div>
-					<div class="input-field col s6">
-						<i class="material-icons prefix grey-text text-lighten-1 active">lock_outline</i>
-						<input id="password" type="password" class="validate" ng-model="user.password">
-						<label for="password" class="active">Password</label>
-					</div>
+			<div class="row">
+				<div class="input-field col s6">
+					<input id="firstname" type="text" class="validate active"
+						ng-model="user.firstname"> <label for="firstname"
+						class="active">First Name</label>
 				</div>
-				<div class="row">
-					<div class="input-field col s6">
-						<input id="firstname" type="text" class="validate active" ng-model="user.firstname">
-						<label for="firstname" class="active">First Name</label>
-					</div>
-					<div class="input-field col s6">
-						<input id="lastname" type="text" class="validate active" ng-model="user.lastname">
-						<label for="lastname" class="active">Last Name</label>
-					</div>
+				<div class="input-field col s6">
+					<input id="lastname" type="text" class="validate active"
+						ng-model="user.lastname"> <label for="lastname"
+						class="active">Last Name</label>
 				</div>
-				<div class="row">
-					<div class="input-field col s12">
-						<i class="material-icons prefix grey-text text-lighten-1 active">mail</i>
-						<input id="email" type="email" class="validate"  ng-model="user.email">
-						<label for="email" class="active">Email</label>
-					</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12">
+					<i class="material-icons prefix grey-text text-lighten-1 active">mail</i>
+					<input id="email" type="email" class="validate"
+						ng-model="user.email"> <label for="email" class="active">Email</label>
 				</div>
-				<div class="row">
-					<div class="input-field col s12">
-						<i class="material-icons prefix grey-text text-lighten-1 active">phone</i>
-						<input id="phone" type="text" class="validate" ng-model="user.phonenumber">
-						<label for="phone" class="active">Phone Number</label>
-					</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12">
+					<i class="material-icons prefix grey-text text-lighten-1 active">phone</i>
+					<input id="phone" type="text" class="validate"
+						ng-model="user.phonenumber"> <label for="phone"
+						class="active">Phone Number</label>
 				</div>
-				<div class="row" style="padding-left:50px;">
-					<input type="radio" value="STUDENT"  id="radio11" class="with-gap"  ng-model="user.role">
-					<label for="radio11">Student</label>
-					<input type="radio" value="ALUMINI" id="radio12" class="with-gap" ng-model="user.role">
-					<label for="radio12">Alumini</label>
-					<input type="radio" value="EMPLOYEE" id="radio13" class="with-gap" ng-model="user.role">
-					<label for="radio13">Employee</label>
-				</div>
-				<div class="card-action center-align">
-				<a class="btn waves-effect waves-teal" type="submit" ng-click="updateUser()">Update
-    				<i class="material-icons right">send</i></a>
-				</div>
+			</div>
+			<div class="row" style="padding-left: 50px;">
+				<input type="radio" value="STUDENT" id="radio11" class="with-gap"
+					ng-model="user.role"> <label for="radio11">Student</label>
+				<input type="radio" value="ALUMINI" id="radio12" class="with-gap"
+					ng-model="user.role"> <label for="radio12">Alumini</label>
+				<input type="radio" value="EMPLOYEE" id="radio13" class="with-gap"
+					ng-model="user.role"> <label for="radio13">Employee</label>
+			</div>
+			<div class="card-action center-align">
+				<a class="btn waves-effect waves-teal" type="submit"
+					ng-click="updateUser()">Update <i class="material-icons right">send</i></a>
+			</div>
 		</div>
 	</form>
 </div>
