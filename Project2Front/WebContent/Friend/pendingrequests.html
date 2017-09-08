@@ -1,8 +1,8 @@
-<p style="font-size: 30px; margin-top:0px;">Suggested Users</p>
+<p style="font-size: 30px; margin-top:0px;">Pending Requests</p>
 <div class="row">
 	<div style="width: 350px; margin-left: 10px;"
 		class="card animated hoverable col s3"
-		ng-repeat="user in suggestedusers">
+		ng-repeat="user in pendingRequests">
 		<table class="card-content table">
 			<tr>
 				<td><img height="80" width="80" class="circle" style="border:2px dashed #ccc "/></td>
@@ -22,8 +22,9 @@
 				</td>
 			</tr>
 		</table>
-		<div class="card-action center-align">
-			<a class="btn btn-success lighten-3" ng-click="friendRequest(user.username)">Send Friend Request</a>
+		<div style="margin-bottom:10px;" class="card-action">
+			<a href="" ng-click="updatePendingRequest(user.username,'A')" style="margin-right:5px;margin-bottom:10px;" class="btn btn-sm col s5  green darken-1">Accept</a>
+			<a href="" ng-click="updatePendingRequest(user.username,'D')" style="margin-bottom:10px;" class="btn btn-sm col s5 red accent-3">Reject</a>
 		</div>
 	</div>
 </div>

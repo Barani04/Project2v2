@@ -3,6 +3,7 @@
  */
 
 var app=angular.module("myApp",['ngRoute','ngCookies'])
+
 app.config(function($routeProvider) {
 	$routeProvider
 	.when('/home',{
@@ -32,9 +33,14 @@ app.config(function($routeProvider) {
 	
 	})
 	
+	.when('/pendingrequests',{
+		templateUrl:'Friend/pendingrequests.html',
+		controller:'FriendController'
+	
+	})
+	
 	.when('/profilepic',{
-		templateUrl:'auth/profilepic.html',
-			controller:'AuthController'
+		templateUrl:'auth/profilepic.html'
 	})
 	
 	.when('/getalljobs',{

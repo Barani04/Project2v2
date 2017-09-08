@@ -56,16 +56,4 @@ app.controller('AuthController',function(AuthService,UserService,BlogService,$sc
 		})
 	}
 	
-	$scope.uploadProfiePic = function(){
-		alert("Hai")
-			AuthService.uploadProfiePic($scope.profile).then(function(response){
-			$location.path('/home')
-		},function(response){
-			if(response.status==401){
-				$scope.error=response.data
-				$location.path('/home')
-			}
-		})
-	}
-	
 })
