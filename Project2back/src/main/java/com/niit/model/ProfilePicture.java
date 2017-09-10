@@ -6,12 +6,10 @@ import javax.persistence.Lob;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="ProfilePicture")
+@Table(name="profile_pic")
 public class ProfilePicture {
-	
 	@Id
 	private String username;
-	
 	@Lob
 	private byte[] image;
 
@@ -30,6 +28,4 @@ public class ProfilePicture {
 	public void setImage(byte[] image) {
 		this.image = image;
 	}
-	
-
 }

@@ -26,13 +26,13 @@ public class FriendController {
 	private FriendDao frienddao;
 	
 	@RequestMapping(value="/getsuggestedusers",method=RequestMethod.GET)
-	public ResponseEntity<?> getListOfSuggestedUsers(/*HttpSession session*/) {
-		/*if(session.getAttribute("username")==null){		
+	public ResponseEntity<?> getListOfSuggestedUsers(HttpSession session) {
+		if(session.getAttribute("username")==null){		
 			Error error = new Error(5, "Unauthorized User");
 			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
 		}
-		String username = (String) session.getAttribute("username");*/
-		List<User> suggestedUsers = frienddao.getListOfSuggestedUsers("Barani");
+		String username = (String) session.getAttribute("username");
+		List<User> suggestedUsers = frienddao.getListOfSuggestedUsers(username);
 		return new ResponseEntity<List<User>>(suggestedUsers,HttpStatus.OK);
 		
 	}

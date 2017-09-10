@@ -4,7 +4,6 @@
 
 app.controller('AuthController',function(AuthService,UserService,BlogService,$scope,$rootScope,$location,$cookieStore){
 	$scope.user={}
-	$scope.profile={}
 	
 	$scope.registerUser=function(){
 		AuthService.registerUser($scope.user).then(function(response) {
@@ -12,8 +11,8 @@ app.controller('AuthController',function(AuthService,UserService,BlogService,$sc
 			$location.path('/signup')	
 		},function(response){
 			console.log(response.status)
-			console.log(response.data)
 			$scope.error=response.data
+			console.log(response.data)
 			$location.path('/signup')
 		})
 	}

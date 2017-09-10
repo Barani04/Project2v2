@@ -57,5 +57,21 @@ public class UserDaoImpl implements UserDao{
 		Query query = session.createQuery("from User where activated="+activated);
 		return query.list();
 	}
+	@Override
+	public boolean updateUserProfile(String fileName, String username) {
+		
+		String statement = "update User set profilepic = ? where username = ?";
+		Query query = sessionFactory.getCurrentSession().createQuery(statement);
+		query.setString(0, fileName);
+		query.setString(1, username);
+		try {
+			query.executeUpdate();
+			return true;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return false;
+		
+	}
 
 }

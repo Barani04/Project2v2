@@ -4,8 +4,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name="users")
@@ -26,6 +28,8 @@ public class User {
 	
 	@Column(name="acc_activate")
 	private boolean activated;
+	
+	
 	public String getUsername() {
 		return username;
 	}
@@ -80,5 +84,7 @@ public class User {
 	public void setActivated(boolean activated) {
 		this.activated = activated;
 	}
+	
+	
 	
 }

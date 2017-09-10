@@ -2,9 +2,9 @@
  * 
  */
 
-app.factory('UserService',function($http){
+app.factory('UserService',function($http,$q,$rootScope){
 	var userService={};
-	var BASE_URL="http://localhost:8081/Project2back"
+	var BASE_URL="http://localhost:8082/Project2back"
 
 	userService.getUser=function(){
 		return $http.get(BASE_URL+"/getuser")
@@ -20,6 +20,7 @@ app.factory('UserService',function($http){
 	userService.changeAccStatus=function(name){
 		return $http.post(BASE_URL+"/activateuser/"+name)
 	}
+	
 	
 	return userService;
 })

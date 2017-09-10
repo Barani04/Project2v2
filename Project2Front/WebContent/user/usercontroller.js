@@ -24,4 +24,5 @@ app.controller('UserController',function(UserService,$scope,$location,$rootScope
 			$location.path('/editprofile')
 		})
 	}
+	
 })

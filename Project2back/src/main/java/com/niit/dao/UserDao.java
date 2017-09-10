@@ -13,4 +13,5 @@ public interface UserDao {
 		void update(User user);
 		User getUserByUsername(String username);
 		List<User> getUsers(int activated);
+		boolean updateUserProfile(String fileName, String username);
 }

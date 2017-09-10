@@ -4,7 +4,7 @@
 
 app.factory('AuthService',function($http){
 	var authService={};
-	var BASE_URL="http://localhost:8081/Project2back"
+	var BASE_URL="http://localhost:8082/Project2back"
 	
 		authService.registerUser=function(user){
 			return $http.post(BASE_URL+"/registeruser",user)

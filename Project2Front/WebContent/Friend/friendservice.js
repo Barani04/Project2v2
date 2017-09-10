@@ -5,7 +5,7 @@
 app.factory('FriendService',function($http){
 	var friendService ={}
 	
-	var BASE_URL="http://localhost:8081/Project2back"
+	var BASE_URL="http://localhost:8082/Project2back"
 	
 	friendService.listOfSuggestedUsers = function(){
 		return $http.get(BASE_URL+"/getsuggestedusers")

@@ -14,20 +14,19 @@ public class ProfilePictureDaoImpl implements ProfilePictureDao {
 	private SessionFactory sessionFactory;
 	
 	@Override
-	public void saveProfilePicture(ProfilePicture proPic) {
-		Session session = sessionFactory.openSession();
-		session.saveOrUpdate(proPic);
+	public void saveProfilePicture(ProfilePicture profilePicture) {
+		Session session=sessionFactory.openSession();
+		session.saveOrUpdate(profilePicture);
 		session.flush();
 		session.close();
-		
 
 	}
 
 	@Override
-	public ProfilePicture getProfilePic(String username) {
-		Session session = sessionFactory.openSession();
-		//select * from profilepicture where username = 'admin'
-		ProfilePicture profilePicture = (ProfilePicture) session.get(ProfilePicture.class, username);
+	public ProfilePicture getProfilePicture(String username) {
+		Session session=sessionFactory.openSession();
+		//select * from profilepicture where username='admin'
+		ProfilePicture profilePicture=(ProfilePicture)session.get(ProfilePicture.class, username);
 		session.close();
 		return profilePicture;
 	}

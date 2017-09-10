@@ -40,7 +40,8 @@ app.config(function($routeProvider) {
 	})
 	
 	.when('/profilepic',{
-		templateUrl:'auth/profilepic.html'
+		templateUrl:'user/profilepic.html',
+		controller:'UserController'
 	})
 	
 	.when('/getalljobs',{

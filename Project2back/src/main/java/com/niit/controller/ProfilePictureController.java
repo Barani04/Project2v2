@@ -15,50 +15,54 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.niit.dao.ProfilePictureDao;
 import com.niit.dao.UserDao;
-import com.niit.model.Error;
 import com.niit.model.ProfilePicture;
 import com.niit.model.User;
+import com.niit.service.Error;
+
 
 @Controller
 public class ProfilePictureController {
-
 	@Autowired
-	private ProfilePictureDao profilePictureDao;
+private ProfilePictureDao profilePictureDao;
 	
 	@Autowired
-	private UserDao	userdao;
+	private UserDao userdao;
 	
 	@RequestMapping(value="/uploadprofilepic",method=RequestMethod.POST)
-	public ResponseEntity<?>uploadProfilePicture(@RequestParam(value="image") CommonsMultipartFile image,HttpSession session){
-		String username = (String) session.getAttribute("username");	
-		System.out.println(username);
-		if(session.getAttribute("username")==null){		
-			Error error = new Error(5, "Unauthorized User");
+public ResponseEntity<?> uploadProfilePicture(@RequestParam CommonsMultipartFile image,HttpSession session){
+	String username=(String) session.getAttribute("username");
+	if(username==null)		{
+		    Error error=new Error(3,"UnAuthorized user");
 			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
-		}
-		User user = userdao.getUserByUsername(username); 
-		
-		ProfilePicture profilePicture=new ProfilePicture();
-		profilePicture.setUsername(user.getUsername());
-		profilePicture.setImage(image.getBytes());
-		profilePictureDao.saveProfilePicture(profilePicture);
-		return new ResponseEntity<User>(user,HttpStatus.OK);
-	}
+	} 
+	ProfilePicture profilePicture=new ProfilePicture();
+	User user = userdao.getUserByUsername(username);
+	profilePicture.setUsername(username);
+	profilePicture.setImage(image.getBytes());
+	profilePictureDao.saveProfilePicture(profilePicture);
+	return new ResponseEntity<User>(user,HttpStatus.OK);
+}
 	
-	//http://localhost:8080/backend_project2/getimage/admin
-		@RequestMapping(value="/getimage/{username}", method=RequestMethod.GET)
-		public @ResponseBody byte[] getProfilePic(@PathVariable String username,HttpSession session){
-			User user=(User)session.getAttribute("user");
-			if(user==null)
+	//http://localhost:8082/backend_project2/getimage/admin
+	@RequestMapping(value="/getimage/{username}", method=RequestMethod.GET)
+	public @ResponseBody byte[] getProfilePic(@PathVariable String username,HttpSession session){
+		String userName = (String) session.getAttribute("username");
+		
+		User user= userdao.getUserByUsername(userName);
+		if(user==null)
+			return null;
+		else
+		{
+			ProfilePicture profilePic=profilePictureDao.getProfilePicture(username);
+			if(profilePic==null)
 				return null;
 			else
-			{
-				ProfilePicture profilePic=profilePictureDao.getProfilePic(username);
-				if(profilePic==null)
-					return null;
-				else
-					return profilePic.getImage();
-			}
-			
-	}
+				return profilePic.getImage();
+		}
+		
+}
+	
+	
+	
+
 }
