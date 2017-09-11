@@ -109,7 +109,7 @@ public class BlogController {
 	}
 	
 	@RequestMapping(value="/getallblogcomments/{bid}")
-	public ResponseEntity<?> getAllBlogComments(@PathVariable int bid,HttpSession session) {
+	public ResponseEntity<?> getAllBlogComments(@PathVariable("bid") int bid,HttpSession session) {
 		if(session.getAttribute("username")==null){
 			Error error = new Error(5, "Unauthorized User");
 			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);

@@ -58,6 +58,7 @@ html, body {
 					<ul id="dropdownf" class="dropdown-content">
 						<li><a class="nav-link " href="#!getsuggestedusers">Suggested Users</a></li>
 						<li><a class="nav-link " href="#!pendingrequests">Pending Requests</a></li>
+						<li><a class="nav-link " href="#!getfriendlist">Friend List</a></li>
 						
 					</ul>
 					<li ng-show="currentUser.firstname"><a
@@ -91,15 +92,16 @@ html, body {
 					<li class="right"><a class="nav-link " href=""
 						ng-click="logout()" ng-show="currentUser.firstname">LogOut</a></li>
 
-					<li><a href="#!profilepic"
-						 ng-show="currentUser.username"> <img
-							src="http://localhost:8082/Project2back/getimage/{{currentUser.username}}"
-							alt="upload Picture" width="30px" height="30px"
-							class="circle responsive-img">
-					</a></li>
+					
 					<li class="right"><a class="nav-link " href=""
 						ng-show="currentUser.firstname">Welcome
 							{{currentUser.username}}</a></li>
+							
+					<li class="right"><a href="#!profilepic" ng-if="currentUser.username" style="height:70px;"> <img 
+							src="http://localhost:8082/Project2back/getimage/{{currentUser.username}}"
+							alt="upload Picture" style="margin:10px 0px;" width="50px" height="50px"
+							class="circle">
+					</a></li>
 				</ul>
 
 				<!-- **** sidebar menu ****-->

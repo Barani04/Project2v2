@@ -64,11 +64,8 @@ app.controller('BlogController',function(BlogService,$scope,$location,$route,$ro
 		
 	}
 	
-	function getBlogComments(){	
+	function getBlogComments(){
 		BlogService.getBlogComments($rootScope.vb.bid).then(function(response){
-			if(response.data == null){
-				$scopecope.note="No Comments Yet...!"
-			}
 			$scope.blogcomments = response.data
 		},function(response){
 			if(response.status==401){

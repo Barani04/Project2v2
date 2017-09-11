@@ -1,0 +1,22 @@
+<p style="font-size: 30px; margin-top:0px;">Friend List</p>
+<div class="row">
+<div style="width: 250px; margin-left: 10px;" class="card animated hoverable col s3" ng-repeat="friend in friends">
+	<table>
+		<tr>
+			<td style="margin:10px;" ng-hide="friend.fromId==currentUser.username">
+				<img src="http://localhost:8082/Project2back/getimage/{{friend.fromId}}" width="80px" height="80px" class="circle">			
+			</td>
+			<td style="margin:10px;" ng-hide="friend.toId==currentUser.username">
+				<img src="http://localhost:8082/Project2back/getimage/{{friend.toId}}" width="80px" height="80px" class="circle">			
+			</td>
+			<td style="margin-left:10px; font-weight:bold;font-size:20px;" ng-hide="friend.fromId==currentUser.username">
+				{{friend.fromId}}
+			</td>
+			<td style="margin-left:10px; font-weight:bold;font-size:20px;" ng-hide="friend.toId==currentUser.username">
+				{{friend.toId}}
+			</td>
+		<tr>
+	</table>	
+</div>
+
+</div>

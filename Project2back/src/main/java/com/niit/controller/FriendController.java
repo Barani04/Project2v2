@@ -66,7 +66,9 @@ public class FriendController {
 			Error error = new Error(5, "Unauthorized User");
 			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
 		}
-		Friend friend = frienddao.getFriend(name);
+		String username = (String) session.getAttribute("username");
+		Friend friend = frienddao.getFriend(name,username);
+		System.out.println(friend);
 		friend.setStatus('A');
 		frienddao.updateFriend(friend);
 		return new ResponseEntity<Void>(HttpStatus.OK);
@@ -80,12 +82,23 @@ public class FriendController {
 			Error error = new Error(5, "Unauthorized User");
 			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
 		}
-		Friend friend = frienddao.getFriend(name);
+		String username = (String) session.getAttribute("username");
+		Friend friend = frienddao.getFriend(name,username);
 		friend.setStatus('D');
 		frienddao.updateFriend(friend);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 		
 	}
 	
+	@RequestMapping(value="/getfriendlist",method=RequestMethod.GET)
+	public ResponseEntity<?> getFriendList(HttpSession session){
+		if(session.getAttribute("username")==null){		
+			Error error = new Error(5, "Unauthorized User");
+			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
+		}
+		String username =(String) session.getAttribute("username");
+		List<Friend> friends = frienddao.friendList(username);
+		return new ResponseEntity<List<Friend>>(friends,HttpStatus.OK);
+	}
 	
 }

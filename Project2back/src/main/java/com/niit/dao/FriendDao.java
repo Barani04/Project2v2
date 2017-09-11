@@ -13,9 +13,11 @@ public interface FriendDao {
 
 	List<User> getAllPendingRequests(String username);
 
-	Friend getFriend(String name);
+	Friend getFriend(String name,String username);
 
 	void updateFriend(Friend friend);
+	
+	List<Friend> friendList(String username);
 	
 	
 }

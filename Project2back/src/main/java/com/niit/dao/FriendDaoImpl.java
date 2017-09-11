@@ -24,13 +24,14 @@ public class FriendDaoImpl implements FriendDao {
 	@Override
 	public List<User> getListOfSuggestedUsers(String username) {
 		Session session = sessionFactory.getCurrentSession();
-		String queryString = "select * from users where username in(select username from users where username != ? minus (select fromId from Friend where toId= ? and status!= 'D' union select toId from Friend where fromId= ? and status!= 'D'))";
+		String queryString = "select * from users where username in(select username from users where username != ? minus (select fromId from Friend where toId= ? union select toId from Friend where fromId= ?)) and acc_activate != 0";
 		
 		SQLQuery query = session.createSQLQuery(queryString);
 		query.setString(0, username);
 		query.setString(1, username);
 		query.setString(2, username);
 		query.addEntity(User.class);
+		@SuppressWarnings("unchecked")
 		List<User> suggestedUsers = query.list();
 		return suggestedUsers;
 	}
@@ -59,19 +60,35 @@ public class FriendDaoImpl implements FriendDao {
 	}
 
 	@Override
-	public Friend getFriend(String name) {
+	public Friend getFriend(String name,String username) {
 		Session session=sessionFactory.getCurrentSession();
-		Query query=session.createQuery("from Friend where fromId = ?");
+		Query query=session.createQuery("from Friend where fromId = ? and toId=?");
 		query.setString(0, name);
-		Friend friend = (Friend) query.uniqueResult();
-		return friend;
+		query.setString(1, username);
+		return (Friend) query.uniqueResult();
 		
 	}
 
 	@Override
 	public void updateFriend(Friend friend) {
 		Session session=sessionFactory.getCurrentSession();
+		if(friend.getStatus()=='D')
+			session.delete(friend);
+		else
 		session.update(friend);
+		
+	}
+
+	@Override
+	public List<Friend> friendList(String username) {
+		Session session=sessionFactory.getCurrentSession();
+		Query query = session.createQuery("from Friend where (fromId=? or toId=?) and status = ?");
+		query.setString(0, username);
+		query.setString(1, username);
+		query.setCharacter(2, 'A');
+		
+		return query.list();
+		
 		
 	}
 

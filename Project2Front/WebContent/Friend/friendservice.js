@@ -26,5 +26,9 @@ app.factory('FriendService',function($http){
 		return $http.put(BASE_URL+"/denypendingrequest/"+name)
 	}
 	
+	friendService.getFriendList = function(){
+		return $http.get(BASE_URL+"/getfriendlist")
+	}
+	
 	return friendService;
 })

@@ -39,6 +39,12 @@ app.config(function($routeProvider) {
 	
 	})
 	
+	.when('/getfriendlist',{
+		templateUrl:'Friend/friendlist.html',
+		controller:'FriendController'
+	
+	})
+	
 	.when('/profilepic',{
 		templateUrl:'user/profilepic.html',
 		controller:'UserController'
