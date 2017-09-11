@@ -3,8 +3,12 @@
 		<div class="card">
 			<div class="card-content">
 				<div style="font-size:30px;font-weight: bolder; " class="card-title">{{blogPost.blogTitle}}</div>
-				<h6>{{blogPost.postedBy.username}} | {{blogPost.postedOn |
-					date:dd/MM/yyyy}}</h6>
+				<table>
+				<tr>
+				<td style="width: 50px;height: 50px;"><img src="http://localhost:8082/Project2back/getimage/{{blogPost.postedBy.username}}" class="circle" width="40px" height="40px"></td><td style="padding-left:20px;"><h6>{{blogPost.postedBy.username}} | {{blogPost.postedOn |
+					date:dd/MM/yyyy}}</td></h6>
+				</tr>
+				</table>
 				<hr>
 				<p>{{blogPost.description}}</p>
 			</div>
@@ -22,7 +26,12 @@
 			</div>
 			{{error.message}}
 			<div class="card-content" ng-show="note == null">
-				<p style="font-size:20px;font-weight: bold;">{{bc.commentedBy.username}} | {{bc.commentedOn | date:'dd/MM/yyyy'}}</p>
+			<table>
+				<tr>
+					<td style="width: 50px;height: 50px; padding-bottom: 5px;margin-top: 10px;"><img src="http://localhost:8082/Project2back/getimage/{{bc.commentedBy.username}}" class="circle" width="40px" height="40px"></td>
+					<td><p style="font-size:20px;font-weight: bold;padding-left:20px;padding-bottom: 5px;margin-top: 10px;">{{bc.commentedBy.username}} | {{bc.commentedOn | date:'dd/MM/yyyy'}}</p></td>
+				</tr>
+			</table>
 				<hr>
 				<p>{{bc.commentText}}<p>
 			</div>
