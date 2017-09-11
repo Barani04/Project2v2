@@ -2,17 +2,17 @@
 	<div class="col s12 m12">
 		<div class="card">
 			<div class="card-content">
-				<div style="font-size:30px;font-weight: bolder; " class="card-title">{{vb.blogTitle}}</div>
-				<h6>{{vb.postedBy.username}} | {{vb.postedOn |
+				<div style="font-size:30px;font-weight: bolder; " class="card-title">{{blogPost.blogTitle}}</div>
+				<h6>{{blogPost.postedBy.username}} | {{blogPost.postedOn |
 					date:dd/MM/yyyy}}</h6>
 				<hr>
-				<p>{{vb.description}}</p>
+				<p>{{blogPost.description}}</p>
 			</div>
 
 		</div>
 	</div>
 </div>
-<div ng-show="vb.approved==1">
+<div ng-show="blogPost.approved==1">
 <h3 class="center-align">Comments</h3>
 <div style="margin-top:5px;" class="card">
 	<div class="card-content">
@@ -20,6 +20,7 @@
 			<div class="card-content" ng-show="note != null">
 				<p><h3>{{note}}</h3></p>
 			</div>
+			{{error.message}}
 			<div class="card-content" ng-show="note == null">
 				<p style="font-size:20px;font-weight: bold;">{{bc.commentedBy.username}} | {{bc.commentedOn | date:'dd/MM/yyyy'}}</p>
 				<hr>

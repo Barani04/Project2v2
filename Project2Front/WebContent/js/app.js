@@ -73,9 +73,9 @@ app.config(function($routeProvider) {
 	
 	})
 	
-	.when('/viewblog',{
+	.when('/viewblogbyid/:bid',{
 		templateUrl:'blog/blogdisplay.html',
-		controller:'BlogController'
+		controller:'BlogDetailController'
 	})
 	
 	.when('/request/useracc',{
@@ -95,10 +95,6 @@ app.run(function(AuthService,$rootScope,$cookieStore,$location) {
 	}
 	if($rootScope.len==undefined){
 		$rootScope.len=$cookieStore.get("len")
-	}
-	
-	if($rootScope.vb==undefined){
-		$rootScope.vb=$cookieStore.get("vb")
 	}
 	
 		$rootScope.logout=function(){
