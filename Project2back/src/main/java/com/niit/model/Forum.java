@@ -1,9 +1,8 @@
 package com.niit.model;
 
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.CascadeType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
@@ -11,7 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
@@ -36,16 +35,11 @@ public class Forum {
 	@Lob
 	private String description;
 	
-	@OneToMany(mappedBy="forum", cascade = CascadeType.ALL)
-	List<ForumPosts> forumpost;
-	
 	@Temporal(javax.persistence.TemporalType.DATE)
 	private Date createdOn;
-	
-	@Column(name="NumberOfPosts")
-	private int nfp;
-	
-	private String username;
+
+	@ManyToOne
+	private User createdBy;
 
 	public int getId() {
 		return id;
@@ -80,14 +74,6 @@ public class Forum {
 		this.description = description;
 	}
 
-	public List<ForumPosts> getForumpost() {
-		return forumpost;
-	}
-
-	public void setForumpost(List<ForumPosts> forumpost) {
-		this.forumpost = forumpost;
-	}
-
 	public Date getCreatedOn() {
 		return createdOn;
 	}
@@ -96,20 +82,13 @@ public class Forum {
 		this.createdOn = createdOn;
 	}
 
-	public int getNfp() {
-		return nfp;
+	public User getCreatedBy() {
+		return createdBy;
 	}
 
-	public void setNfp(int nfp) {
-		this.nfp = nfp;
+	public void setCreatedBy(User createdBy) {
+		this.createdBy = createdBy;
 	}
 
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
 	
 }

@@ -89,6 +89,16 @@ app.config(function($routeProvider) {
 	
 	})
 	
+	.when('/createforum',{
+		templateUrl:'forum/createforum.html',
+		controller:'ForumController'
+	})
+	
+	.when('/getallforum',{
+		templateUrl:'forum/getallforum.html',
+		controller:'ForumController'
+	})
+	
 	.otherwise({
 		templateUrl:'views/home.html'
 	})

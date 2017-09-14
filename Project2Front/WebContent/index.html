@@ -83,8 +83,17 @@ html, body {
 					</ul>
 					<li><a class="dropdown-button " href="#"
 						data-activates="dropdown2" ng-show="currentUser.firstname">Blog</a></li>
-					<!-- <li><a class="nav-link " href="#!addblog" ng-show="currentUser.firstname">ADD Blog</a> -->
-					</li>
+					<!-- Forum start -->
+					<ul id="forum" class="dropdown-content">
+						<li><a class="nav-link " href="#!createforum"
+							ng-show="currentUser.firstname">Create Forum</a></li>
+						<li><a class="nav-link " href="#!getallforum"
+							ng-show="currentUser.firstname">Get All Forum</a></li>
+					</ul>
+					<li><a class="dropdown-button " href="#"
+						data-activates="forum" ng-show="currentUser.firstname">Forum</a></li>
+					
+					<!-- Forum End -->
 					<li class="right"><a class="nav-link " href="#!signup"
 						ng-hide="currentUser.firstname">SignUp</a></li>
 					<li class="right"><a class="nav-link " href="#!login"
@@ -147,6 +156,8 @@ html, body {
 	<script src="requests/requestcontroller.js"></script>
 	<script src="Friend/friendservice.js"></script>
 	<script src="Friend/friendcontroller.js"></script>
+	<script src="forum/forumcontroller.js"></script>
+	<script src="forum/forumservice.js"></script>
 	<script type="text/javascript">
   		$( document ).ready(function(){
   			$(".button-collapse").sideNav();

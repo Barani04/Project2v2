@@ -32,8 +32,8 @@ public class ForumPosts {
 	@JoinColumn(name="Forum_id")
 	private Forum forum;
 	
-	@Column(name = "PostedBy")
-	private String username;
+	@ManyToOne
+	private User postedBy;
 	
 	private String description;
 	
@@ -54,23 +54,7 @@ public class ForumPosts {
 
 	public void setTopic(String topic) {
 		this.topic = topic;
-	}
-
-	public Forum getforum() {
-		return forum;
-	}
-
-	public void setforum(Forum forum) {
-		this.forum = forum;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
+	}	
 
 	public String getDescription() {
 		return description;
@@ -87,4 +71,22 @@ public class ForumPosts {
 	public void setPostDate(Date postDate) {
 		this.postDate = postDate;
 	}
+
+	public Forum getForum() {
+		return forum;
+	}
+
+	public void setForum(Forum forum) {
+		this.forum = forum;
+	}
+
+	public User getPostedBy() {
+		return postedBy;
+	}
+
+	public void setPostedBy(User postedBy) {
+		this.postedBy = postedBy;
+	}
+
+	
 }
