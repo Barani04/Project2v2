@@ -19,4 +19,6 @@ public interface BlogDao {
 	
 	List<BlogComment>	getAllBlogComments(int blogId);
 
+	List<Blog> getBlogbyUsername(String name);
+
 }

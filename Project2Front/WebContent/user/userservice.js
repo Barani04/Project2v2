@@ -21,6 +21,10 @@ app.factory('UserService',function($http,$q,$rootScope){
 		return $http.post(BASE_URL+"/activateuser/"+name)
 	}
 	
+	userService.getProfile = function(userId){
+		return $http.get(BASE_URL+"/getprofile/"+userId)
+	}
+	
 	
 	return userService;
 })

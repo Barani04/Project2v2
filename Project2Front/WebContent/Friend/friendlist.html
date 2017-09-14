@@ -10,10 +10,10 @@
 				<img src="http://localhost:8082/Project2back/getimage/{{friend.toId}}" width="80px" height="80px" class="circle">			
 			</td>
 			<td style="margin-left:10px; font-weight:bold;font-size:20px;" ng-hide="friend.fromId==currentUser.username">
-				{{friend.fromId}}
+				<a href="#!viewprofile/{{friend.fromId}}" style="text-decoration: none;">{{friend.fromId}}</a>
 			</td>
 			<td style="margin-left:10px; font-weight:bold;font-size:20px;" ng-hide="friend.toId==currentUser.username">
-				{{friend.toId}}
+				<a href="#!viewprofile/{{friend.toId}}" style="text-decoration: none;">{{friend.toId}}</a>
 			</td>
 		<tr>
 	</table>	

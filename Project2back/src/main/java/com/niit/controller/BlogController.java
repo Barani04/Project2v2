@@ -118,4 +118,14 @@ public class BlogController {
 		return new ResponseEntity<List<BlogComment>>(blogComments,HttpStatus.OK);
 		
 	}
+	
+	@RequestMapping(value="/getblogbyusername/{userId}")
+	public ResponseEntity<?> getBlogbyUsername(@PathVariable("userId") String name,HttpSession session){
+		if(session.getAttribute("username")==null){
+			Error error = new Error(5, "Unauthorized User");
+			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
+		}
+		List<Blog> blogPosts = blogdao.getBlogbyUsername(name);
+		return new ResponseEntity<List<Blog>>(blogPosts,HttpStatus.OK);
+	}
 }

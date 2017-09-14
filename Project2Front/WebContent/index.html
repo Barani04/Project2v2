@@ -93,7 +93,7 @@ html, body {
 						ng-click="logout()" ng-show="currentUser.firstname">LogOut</a></li>
 
 					
-					<li class="right"><a class="nav-link " href=""
+					<li class="right"><a class="nav-link " href="#!viewprofile/{{currentUser.username}}"
 						ng-show="currentUser.firstname">Welcome
 							{{currentUser.username}}</a></li>
 							
@@ -137,6 +137,7 @@ html, body {
 	<script src="auth/authcontroller.js"></script>
 	<script src="auth/authservice.js"></script>
 	<script src="user/usercontroller.js"></script>
+	<script src="user/userprofilecontroller.js"></script>
 	<script src="user/userservice.js"></script>
 	<script src="job/jobcontroller.js"></script>
 	<script src="job/jobservice.js"></script>

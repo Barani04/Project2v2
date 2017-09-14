@@ -59,4 +59,12 @@ public class BlogDaoImpl implements BlogDao {
 		return query.list();
 	}
 
+	@Override
+	public List<Blog> getBlogbyUsername(String name) {
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("from Blog where postedBy.username = ? and approved = 1");
+		query.setString(0, name);
+		return query.list();
+	}
+
 }

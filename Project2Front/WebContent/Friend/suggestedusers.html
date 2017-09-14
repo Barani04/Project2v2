@@ -1,6 +1,6 @@
 <p style="font-size: 30px; margin-top:0px;">Suggested Users</p>
 <div class="row">
-	<div style="width: 350px; margin-left: 10px;"
+	<div style="width: 380px; margin-left: 10px;"
 		class="card animated hoverable col s3"
 		ng-repeat="user in suggestedusers">
 		<table class="card-content table">
@@ -22,8 +22,9 @@
 				</td>
 			</tr>
 		</table>
-		<div class="card-action center-align">
-			<a class="btn btn-success lighten-3" ng-click="friendRequest(user.username)">Send Friend Request</a>
+		<div class="card-action  center-align">
+			<a href="#!viewprofile/{{user.username}}" class="btn light-green" style="margin-right: 5px;margin-bottom: 10px;">View Profile</a>
+			<a class="btn  lighten-3" style="margin-bottom: 10px;"" ng-click="friendRequest(user.username)">Send Friend Request</a>
 		</div>
 	</div>
 </div>

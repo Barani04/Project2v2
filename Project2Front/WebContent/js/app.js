@@ -50,6 +50,11 @@ app.config(function($routeProvider) {
 		controller:'UserController'
 	})
 	
+	.when('/viewprofile/:username',{
+		templateUrl:'user/userprofile.html',
+		controller:'UserProfileController'
+	})
+	
 	.when('/getalljobs',{
 		templateUrl:'job/jobspage.html',
 		controller:'JobController'

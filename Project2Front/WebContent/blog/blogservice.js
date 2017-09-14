@@ -34,5 +34,10 @@ app.factory('BlogService',function($http){
 	blogService.getBlogComments=function(bid){
 		return $http.get(BASE_URL+"/getallblogcomments/"+bid)
 	}
+	
+	blogService.getBlogbyUsername=function(userId){
+		return $http.get(BASE_URL+"/getblogbyusername/"+userId)
+	}
+	
 	return blogService;
 })

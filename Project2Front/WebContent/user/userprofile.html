@@ -1,0 +1,43 @@
+<style type="text/css">
+.card-title{
+ background-image:url(https://lawinsport-softfforge.netdna-ssl.com/images/article_images/Shaking_hands_with_sunlight_in_background.jpg);
+ height:230px;
+ width:650px;
+}
+
+</style>
+
+<div class="card col s8 animated bounceIn">
+	<div class="card-title white-text">
+		<table>
+				<tr>
+					<td style="padding-top:100px;padding-right:0px;width:90px;">
+						<img src="http://localhost:8082/Project2back/getimage/{{profile.username}}" class="circle responsive-img" width="80px" height="80px" >
+					</td>						
+					<td style="padding-top:100px;font-weight:bold;">
+						{{profile.username}}		
+					</td>
+				</tr>
+		</table>	
+	</div>
+	<div class="card-content">
+		<h4>User Info:</h4>
+		<div style="font-size:18px;margin-left:10px;">
+			<b>Email Id : </b>{{profile.email}}
+			<br/>
+			<b>Contact No : </b>{{profile.phonenumber}}
+			<br/>
+			<b>Role : </b>{{profile.role}}
+		</div>
+		<h4>User Blogs:</h4>
+		<ul class="row">
+			<li class="card col s4 hoverable" ng-repeat="blogPost in blogPosts" style="width:290px;margin-right: 5px;">
+				<a class="card-content" style="color:black;padding-top: 0px;"  href="#!viewblogbyid/{{blogPost.bid}}" >
+					<p style="margin:0px 10px;"> <h5 style="color:#565c87;" >{{blogPost.blogTitle}}<small style="font-size:12px ;float: right;color:#038468;">{{blogPost.postedOn|date:dd/MM/yyyy}}</small></h5></p>
+					<hr style="margin:0px 10px; color:#f2f5f9;opacity: 0.25;">
+					<p class="truncate" style="margin-left:10px;">{{blogPost.description}}</p>
+				</a>
+			<li ng-if="post!=null">{{post}}<li>
+		</ul>
+	</div>
+</div>

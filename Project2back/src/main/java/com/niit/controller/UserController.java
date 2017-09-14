@@ -132,5 +132,16 @@ public class UserController {
 		return new ResponseEntity<User>(user,HttpStatus.OK);
 	}
 	
+	@RequestMapping(value="/getprofile/{userId}",method=RequestMethod.GET)
+	public ResponseEntity<?> getProfile(@PathVariable("userId") String name,HttpSession session){
+		if(session.getAttribute("username")==null){
+			Error error = new Error(5, "UnAuthorized User");
+			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
+		}
+		User user = userdao.getUserByUsername(name);
+		
+		return new ResponseEntity<User>(user,HttpStatus.OK);
+	}
+	
 	
 }
