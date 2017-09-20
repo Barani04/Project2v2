@@ -13,28 +13,26 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.niit.dao.ForumDao;
-import com.niit.dao.ForumRequestDao;
+import com.niit.dao.ForumPostDao;
 import com.niit.dao.UserDao;
 import com.niit.model.Forum;
+import com.niit.model.ForumPosts;
 import com.niit.model.User;
 import com.niit.service.Error;
 
 @Controller
-public class ForumController {
+public class ForumPostController {
 
 	@Autowired
-	ForumDao forumdao; 
+	ForumPostDao forumpostdao;
 	
 	@Autowired
-	private ForumRequestDao forumreqdao;
+	UserDao userdao;
 	
-	@Autowired
-	private UserDao userdao;
-	
-	@RequestMapping(value="/saveforum",method=RequestMethod.POST)
-	public ResponseEntity<?> createForum(@RequestBody Forum forum,HttpSession session) {
+	@RequestMapping(value="/addforumpost",method=RequestMethod.POST)
+	public ResponseEntity<?> createForum(@RequestBody ForumPosts forumpost,HttpSession session) {
 	
 		if(session.getAttribute("username")==null){		
 			Error error = new Error(5, "Unauthorized User");
@@ -42,40 +40,37 @@ public class ForumController {
 		}
 		String username = (String) session.getAttribute("username");
 		User user = userdao.getUserByUsername(username);
-		forum.setCreatedOn(new Date());
-		forum.setCreatedBy(user);
-		forum.setStatus(true);
+		forumpost.setPostedBy(user);
+		forumpost.setPostDate(new Date());
+		
 		try{
-			forumdao.saveForum(forum);
-			return new ResponseEntity<Forum>(forum,HttpStatus.OK);
+			forumpostdao.saveForumPost(forumpost);
+			return new ResponseEntity<ForumPosts>(forumpost,HttpStatus.OK);
 		}catch(Exception e){
 			Error error = new Error(7,"Unable to Create Forum");
 			return new ResponseEntity<Error>(error,HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	
-	@RequestMapping(value="/getallforum",method=RequestMethod.GET)
-	public ResponseEntity<?> getAllForum(HttpSession session){
+	@RequestMapping(value="/viewforumposts/{id}",method=RequestMethod.GET)
+	public ResponseEntity<?> getAllForumPosts(@PathVariable("id") int forumId,HttpSession session) {
 		if(session.getAttribute("username")==null){		
 			Error error = new Error(5, "Unauthorized User");
 			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
 		}
-		List<Forum> forums = forumdao.getAllForum();
-		return new ResponseEntity<List<Forum>>(forums, HttpStatus.OK);
-
+		List<ForumPosts> forumposts = forumpostdao.getAllForumPosts(forumId);
 		
+		return new ResponseEntity<List<ForumPosts>>(forumposts,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/getforumbyid/{id}",method=RequestMethod.GET)
-	public ResponseEntity<?> getForumById(@PathVariable("id") int forumId,HttpSession session){
+	@RequestMapping(value="/viewforumpost/{fpid}",method=RequestMethod.GET)
+	public ResponseEntity<?> getForumPost(@PathVariable("fpid") int fpid,HttpSession session) {
 		if(session.getAttribute("username")==null){		
 			Error error = new Error(5, "Unauthorized User");
 			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
 		}
-		Forum forumdetail = forumdao.getForumById(forumId);
-		return new ResponseEntity<Forum>(forumdetail,HttpStatus.OK);
+		
+		ForumPosts forum = forumpostdao.getForumPostById(fpid);
+		return new ResponseEntity<ForumPosts>(forum, HttpStatus.OK);
 	}
-	
-	
-	
 }

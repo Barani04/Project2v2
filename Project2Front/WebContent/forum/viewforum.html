@@ -1,0 +1,26 @@
+<div class="card col s8" style="width: 800px;">
+	<div class="card-content">
+		<table>
+			<tr>
+				<td style="width: 650px;">
+					<div class="card-title">
+						<h4>
+							{{forumdetail.forumTitle}}<a style="float: right;"
+								class="btn btn-sm right-align" ng-if="forumdetail.createdBy.username"
+								ng-click="joinForum()">Join Forum</a>
+						</h4>
+					</div>
+					<hr>
+					<div>{{forumdetail.description}}</div>
+				</td>
+				<td class="center-align" style="width: 150px;"><img
+					src="http://localhost:8082/Project2back/getimage/{{forumdetail.createdBy.username}}"
+					class="circle" width="80px" height="80px"> <small>CreatedBy:{{forumdetail.createdBy.username}}</small>
+					<p>
+						<small>Created On:{{forumdetail.createdOn |
+							date:dd/MM/yyyy}}</small>
+					</p></td>
+			</tr>
+		</table>
+	</div>
+</div>

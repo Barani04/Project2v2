@@ -1,13 +1,14 @@
 <h4>List of All Forum</h4>
-<div class="row">
-	<div class="card col s4" style="width:300px;height: 300px;" ng-repeat="forum in getallforum">
-		<div class="card-content">
-		<h4>{{forum.forumTitle}}</h4>
-		<h6>{{forum.createdBy}} | {{forum.createdOn | date:dd/MM/yyyy}}</h6>
-		<hr>
-		<div class="truncate">
-			{{forum.description}}
+<div class="row" ng-repeat="forum in getallforum">
+	<div class="card col s4"
+		style="width: 900px; height: 200px; margin-left: 10px;">
+		<div class="card-content" style="padding: 0px;">
+			<h4>{{forum.forumTitle}}</h4>
+			<h6>{{forum.createdBy.username}} | {{forum.createdOn |
+				date:dd/MM/yyyy}}</h6>
+			<hr>
+			<div class="truncate">{{forum.description}}</div>
 		</div>
-		</div>
+		<div class="card-action right-align"><a href="#!getforumbyid/{{forum.id}}">VIEW</a></div>
 	</div>
 </div>

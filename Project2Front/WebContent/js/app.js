@@ -17,6 +17,11 @@ app.config(function($routeProvider) {
 		templateUrl:'auth/login.html',
 		controller:'AuthController'
 	})
+	
+	.when('/chat',{
+		templateUrl:'chat/chat.html',
+		controller:'ChatController'
+	})
 	.when('/editprofile',{
 		templateUrl:'user/updateprofile.html',
 		controller:'UserController'
@@ -99,6 +104,11 @@ app.config(function($routeProvider) {
 		controller:'ForumController'
 	})
 	
+	.when('/getforumbyid/:id',{
+		templateUrl:'forum/viewforum.html',
+		controller:'ForumDetailController'
+	})
+		
 	.otherwise({
 		templateUrl:'views/home.html'
 	})

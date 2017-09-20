@@ -23,7 +23,7 @@ app.controller('ForumController',function(ForumService,$scope,$location){
 		})
 	}
 	
-	$scope.getallForum=function(){
+	
 		ForumService.getallForum().then(function(response){
 			console.log(response.data)
 			$scope.getallforum = response.data
@@ -33,5 +33,5 @@ app.controller('ForumController',function(ForumService,$scope,$location){
 				$location.path('/home')
 			}
 		})
-	}
+		
 })

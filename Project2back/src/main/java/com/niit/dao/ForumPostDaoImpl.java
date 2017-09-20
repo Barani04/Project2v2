@@ -10,36 +10,39 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.niit.model.Forum;
+import com.niit.model.ForumPosts;
 
 @Repository
 @Transactional
-public class ForumDaoImpl implements ForumDao {
+public class ForumPostDaoImpl implements ForumPostDao {
 
 	@Autowired
 	private SessionFactory	sessionFactory;
 	
-	public void saveForum(Forum forum) {
+	
+	@Override
+	public void saveForumPost(ForumPosts forumpost) {
 		Session session = sessionFactory.getCurrentSession();
-		session.saveOrUpdate(forum);
+		session.save(forumpost);
 		
 	}
-
+	
 	@Override
-	public List<Forum> getAllForum() {
+	public List<ForumPosts> getAllForumPosts(int forumId) {
 		Session session = sessionFactory.getCurrentSession();
-		Query query =session.createQuery("from Forum");
+		Query query = session.createQuery("from ForumPosts where forum.id = ?");
+		query.setInteger(0, forumId);
 		return query.list();
 	}
 
 	@Override
-	public Forum getForumById(int forumId) {
+	public ForumPosts getForumPostById(int fpid) {
 		Session session = sessionFactory.getCurrentSession();
-		Query query =session.createQuery("from Forum where id=?");
-		query.setInteger(0, forumId);
-		Forum forum = (Forum) query.uniqueResult();
-		return forum;
+		Query query = session.createQuery("from ForumPosts where id=?");
+		query.setInteger(0, fpid);
+		return (ForumPosts) query.uniqueResult();
 	}
+
 	
 
 }

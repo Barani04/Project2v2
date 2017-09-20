@@ -7,8 +7,8 @@
 	href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link href="materialize/css/materialize.min.css" rel="stylesheet">
 <link href="css/animate.css" rel="stylesheet">
- <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
+ <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script> -->
 
 
 <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="css/style.css">
 <style type="text/css">
 html, body {
-	background-color: #E6E6FA;
+	background-color: #e1bee7;
 }
 
 .brand-logo {
@@ -33,7 +33,7 @@ html, body {
 <body ng-app="myApp">
 	<div class="wrapper">
 		<nav>
-			<div class="nav-wrapper white-text indigo lighten-3">
+			<div class="nav-wrapper white-text purple">
 				<!-- **** Branding and hamburger menu ****-->
 				<a href="#!" class="brand-logo">EDUSPOT</a> <a href="#"
 					data-activates="mobile-demo" class="button-collapse"><i
@@ -94,6 +94,10 @@ html, body {
 						data-activates="forum" ng-show="currentUser.firstname">Forum</a></li>
 					
 					<!-- Forum End -->
+					
+					<li><a class="nav-link " href="#!chat"
+						ng-show="currentUser.firstname">Chat</a></li>
+					
 					<li class="right"><a class="nav-link " href="#!signup"
 						ng-hide="currentUser.firstname">SignUp</a></li>
 					<li class="right"><a class="nav-link " href="#!login"
@@ -157,7 +161,13 @@ html, body {
 	<script src="Friend/friendservice.js"></script>
 	<script src="Friend/friendcontroller.js"></script>
 	<script src="forum/forumcontroller.js"></script>
+	<script src="forum/forumdetailcontroller.js"></script>
 	<script src="forum/forumservice.js"></script>
+	<script src="js/sockjs/sockjs.js"></script>
+	<script src="js/stomp/dist/stomp.js"></script>
+	<script src="chat/chatcontroller.js"></script>
+	<script src="chat/chatservice.js"></script>
+		
 	<script type="text/javascript">
   		$( document ).ready(function(){
   			$(".button-collapse").sideNav();

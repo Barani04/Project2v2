@@ -46,14 +46,14 @@ public class SockController {
 	
 	@MessageMapping("/chat")
 	public void chatRecieved(Chat chat) {
-		if("all".equals(chat.getSentTo())){
-			System.out.println("IN CHAT REVEIVED " + chat.getMessage() + " " + chat.getSentFrom() + " to " + chat.getSentTo());
+		if("all".equals(chat.getTo())){
+			System.out.println("IN CHAT REVEIVED " + chat.getMessage() + " " + chat.getFrom() + " to " + chat.getTo());
 			messagingTemplate.convertAndSend("/queue/chats/", chat);
 		}
 		else{
-			System.out.println("CHAT TO " + chat.getSentTo() + " From " + chat.getSentFrom() + " Message " + chat.getMessage());
-			messagingTemplate.convertAndSend("/queue/chats/"+chat.getSentTo(), chat);
-			messagingTemplate.convertAndSend("/queue/chats/"+chat.getSentFrom(), chat);
+			System.out.println("CHAT TO " + chat.getTo() + " From " + chat.getFrom() + " Message " + chat.getMessage());
+			messagingTemplate.convertAndSend("/queue/chats/"+chat.getTo(), chat);
+			messagingTemplate.convertAndSend("/queue/chats/"+chat.getFrom(), chat);
 		}
 	}
 	
