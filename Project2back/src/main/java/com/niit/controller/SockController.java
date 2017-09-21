@@ -48,7 +48,7 @@ public class SockController {
 	public void chatRecieved(Chat chat) {
 		if("all".equals(chat.getTo())){
 			System.out.println("IN CHAT REVEIVED " + chat.getMessage() + " " + chat.getFrom() + " to " + chat.getTo());
-			messagingTemplate.convertAndSend("/queue/chats/", chat);
+			messagingTemplate.convertAndSend("/queue/chats", chat);
 		}
 		else{
 			System.out.println("CHAT TO " + chat.getTo() + " From " + chat.getFrom() + " Message " + chat.getMessage());
