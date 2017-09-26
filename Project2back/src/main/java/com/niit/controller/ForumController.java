@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.niit.dao.ForumDao;
-import com.niit.dao.ForumRequestDao;
 import com.niit.dao.UserDao;
 import com.niit.model.Forum;
 import com.niit.model.User;
@@ -26,9 +25,6 @@ public class ForumController {
 
 	@Autowired
 	ForumDao forumdao; 
-	
-	@Autowired
-	private ForumRequestDao forumreqdao;
 	
 	@Autowired
 	private UserDao userdao;
