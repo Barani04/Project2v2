@@ -4,10 +4,10 @@
 	<table>
 		<tr>
 			<td style="margin:10px;" ng-hide="friend.fromId==currentUser.username">
-				<img src="http://localhost:8082/Project2back/getimage/{{friend.fromId}}" width="80px" height="80px" class="circle">			
+				<img src="http://localhost:8083/Project2back/getimage/{{friend.fromId}}" width="80px" height="80px" class="circle">			
 			</td>
 			<td style="margin:10px;" ng-hide="friend.toId==currentUser.username">
-				<img src="http://localhost:8082/Project2back/getimage/{{friend.toId}}" width="80px" height="80px" class="circle">			
+				<img src="http://localhost:8083/Project2back/getimage/{{friend.toId}}" width="80px" height="80px" class="circle">			
 			</td>
 			<td style="margin-left:10px; font-weight:bold;font-size:20px;" ng-hide="friend.fromId==currentUser.username">
 				<a href="#!viewprofile/{{friend.fromId}}" style="text-decoration: none;">{{friend.fromId}}</a>

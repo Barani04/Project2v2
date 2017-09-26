@@ -4,7 +4,7 @@
 
 app.factory('UserService',function($http,$q,$rootScope){
 	var userService={};
-	var BASE_URL="http://localhost:8082/Project2back"
+	var BASE_URL="http://localhost:8083/Project2back"
 
 	userService.getUser=function(){
 		return $http.get(BASE_URL+"/getuser")

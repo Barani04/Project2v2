@@ -104,17 +104,14 @@ html, body {
 						ng-hide="currentUser.firstname">LogIn</a></li>
 					<li class="right"><a class="nav-link " href=""
 						ng-click="logout()" ng-show="currentUser.firstname">LogOut</a></li>
-
-					
-					<li class="right"><a class="nav-link " href="#!viewprofile/{{currentUser.username}}"
-						ng-show="currentUser.firstname">Welcome
-							{{currentUser.username}}</a></li>
 							
-					<li class="right"><a href="#!profilepic" ng-if="currentUser.username" style="height:70px;"> <img 
-							src="http://localhost:8082/Project2back/getimage/{{currentUser.username}}"
+					<li class="right"><table><tr><td><a href="#!profilepic" ng-if="currentUser.username" style="height:70px;"> <img 
+							src="http://localhost:8083/Project2back/getimage/{{currentUser.username}}"
 							alt="upload Picture" style="margin:10px 0px;" width="50px" height="50px"
 							class="circle">
-					</a></li>
+					</a></td><td><a class="nav-link " href="#!viewprofile/{{currentUser.username}}"
+						ng-show="currentUser.firstname">Welcome
+							{{currentUser.username}}</a></td></tr></table></li>
 				</ul>
 
 				<!-- **** sidebar menu ****-->
