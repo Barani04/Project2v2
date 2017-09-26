@@ -31,10 +31,5 @@ app.factory('ForumService',function($http){
 		return $http.post(BASE_URL+"/addforumpost",forumpost)
 	}
 	
-	forumService.joinForum =function(userreq,forumId){
-		return $http.post(BASE_URL+"/joinforum/"+userreq,forumId)
-		
-	}
-	
 	return forumService;
 })

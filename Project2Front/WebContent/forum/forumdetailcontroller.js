@@ -15,15 +15,4 @@ app.controller('ForumDetailController',function(ForumService,$location,$scope,$r
 	})
 	
 	
-	$scope.joinforum = function(){
-		var userreq =$rootScpoe.currentUser.username
-		ForumService.joinForum(userreq,forumId).then(function (response) {
-			 $route.reload();
-             Materialize.toast('Request to join the forum sent!', 3000);
-		},function(response){
-			
-		})
-	}
-	
-	
 })
