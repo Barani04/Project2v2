@@ -1,3 +1,102 @@
-<div>
-	<h1>HOME PAGE</h1>
+<style type="text/css">
+.c1 {
+	margin-left: 20px;
+	height: 300px;
+	width: 1200px;
+	overflow: hidden;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	margin-bottom: 50px;
+}
+
+.ct {
+	margin: 10px 0px 15px 15px;
+	margin-bottom: 0px;
+}
+
+.c2 {
+	margin-top: 0px;
+	height: 180px;
+	width: 180px;
+	margin-right: 10px;
+	padding: 30px 0;
+	margin-right: 10px;
+}
+
+.cc .cg {
+	padding: 5px 5px 5px 5px !important;
+}
+</style>
+<div ng-controller="UserController as uc">
+	<div class="card c1 row col s12 m12"
+		ng-controller="BlogController as bc">
+		<div class="card-title ct">
+			<h4>Blogs</h4></div>
+			<div class="card-content cg">
+				<div ng-init="bc.getBlogsApproved()">
+					<div class="card col s3 c2 animated hoverable" ng-repeat="blog in blogsApproved">
+						<div class="card-content cc">
+							<span ng-bind="blog.blogTitle"
+								style="font-size: 23px; font-weight: bold; padding-top: 5px;"></span><br>
+							<span ng-bind="blog.postedBy.username"></span> | <span
+								ng-bind="blog.postedOn | date:'dd/MM/yyyy'"></span>
+							<hr>
+							<p style="font-size: 16px;">
+								<span ng-bind="blog.description | limitTo:70"
+									style="white-space: pre-line;"></span> ...<span><a
+									href="#!viewblogbyid/{{blog.bid}}">[read more]</a></span>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="card c1 row col s12 m12"
+		ng-controller="ForumController as fc">
+		<div class="card-title ct">
+			<h4>Forums</h4></div>
+			<div class="card-content cg">
+				<div ng-init="fc.getallForum()">
+					<div class="card col s3 c2 animated hoverable" ng-repeat="for in getallforum">
+						<div class="card-content cc">
+							<span ng-bind="for.forumTitle"
+								style="font-size: 23px; font-weight: bold; padding-top: 5px;"></span><br>
+							<span ng-bind="for.createdBy.username"></span> | <span
+								ng-bind="for.createdOn | date:'dd/MM/yyyy'"></span>
+							<hr>
+							<p style="font-size: 16px;">
+								<span ng-bind="for.description | limitTo:70"
+									style="white-space: pre-line;"></span> ...<span><a
+									href="#!getforumbyid/{{for.id}}">[read more]</a></span>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- <div class="card c1 row col s12 m12"
+		ng-controller="JobController as jc">
+		<div class="card-title ct">
+			<h4>Forums</h4></div>
+			<div class="card-content cg">
+				<div ng-init="jc.getallForum()">
+					<div class="card col s3 c2" ng-repeat="for in getallforum">
+						<div class="card-content cc">
+							<span ng-bind="for.forumTitle"
+								style="font-size: 23px; font-weight: bold; padding-top: 5px;"></span><br>
+							<span ng-bind="for.createdBy.username"></span> | <span
+								ng-bind="for.createdOn | date:'dd/MM/yyyy'"></span>
+							<hr>
+							<p style="font-size: 16px;">
+								<span ng-bind="for.description | limitTo:70"
+									style="white-space: pre-line;"></span> ...<span><a
+									href="#!getforumbyid/{{for.id}}">[read more]</a></span>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div> -->
 </div>

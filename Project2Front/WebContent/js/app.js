@@ -22,6 +22,10 @@ app.config(function($routeProvider) {
 		templateUrl:'chat/chat.html',
 		controller:'ChatController'
 	})
+	/*.when('/viewjob',{
+		templateUrl:'job/viewjob.html',
+		controller:'JobController'
+	})*/
 	.when('/editprofile',{
 		templateUrl:'user/updateprofile.html',
 		controller:'UserController'

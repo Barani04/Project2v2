@@ -54,7 +54,7 @@ public class BlogController {
 		}
 	}
 	
-	@RequestMapping(value="/getblogs/{approved}")
+	@RequestMapping(value="/getblogs/{approved}",method=RequestMethod.GET)
 	public ResponseEntity<?> getBlogs(@PathVariable int approved,HttpSession session){
 		if(session.getAttribute("username")==null){
 			Error error = new Error(5, "Unauthorized User");
