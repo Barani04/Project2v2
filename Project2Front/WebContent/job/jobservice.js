@@ -14,9 +14,20 @@ app.factory('JobService',function($http){
 		return $http.get(BASE_URL+"/getalljobs")
 	}
 	
-	jobService.getJobDetails=function(jid){
-		return $http.get(BASE_URL+"/getjobbyid/"+jid)
+	jobService.getJobDetails=function(jobid){
+		return $http.get(BASE_URL+"/getjobbyid/"+jobid)
 	}
 	
+	jobService.applyJob=function(jobid){
+		return $http.post(BASE_URL+"/applyjob/"+jobid)
+	}
+	
+	jobService.isApplied=function(jobid){
+		return $http.get(BASE_URL+"/getappjobs/"+jobid)
+	}
+	
+	jobService.numOfApplicants = function(jobid){
+		return $http.get(BASE_URL+"/applicantsnum/"+jobid)
+	}
 	return jobService;
 })

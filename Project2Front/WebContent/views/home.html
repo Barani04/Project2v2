@@ -68,7 +68,7 @@
 							<p style="font-size: 16px;">
 								<span ng-bind="for.description | limitTo:70"
 									style="white-space: pre-line;"></span> ...<span><a
-									href="#!getforumbyid/{{for.id}}">[read more]</a></span>
+									href="#!getforumbyid/{{for.id}}">[view forum]</a></span>
 							</p>
 						</div>
 					</div>
@@ -76,27 +76,26 @@
 			</div>
 		</div>
 		
-		<!-- <div class="card c1 row col s12 m12"
+		<div class="card c1 row col s12 m12"
 		ng-controller="JobController as jc">
 		<div class="card-title ct">
-			<h4>Forums</h4></div>
+			<h4>Jobs</h4></div>
 			<div class="card-content cg">
-				<div ng-init="jc.getallForum()">
-					<div class="card col s3 c2" ng-repeat="for in getallforum">
+				<div ng-init="jc.getAllJobs()">
+					<div class="card col s3 c2" ng-repeat="j in jobs">
 						<div class="card-content cc">
-							<span ng-bind="for.forumTitle"
-								style="font-size: 23px; font-weight: bold; padding-top: 5px;"></span><br>
-							<span ng-bind="for.createdBy.username"></span> | <span
-								ng-bind="for.createdOn | date:'dd/MM/yyyy'"></span>
+							<span ng-bind="j.jobTitle | limitTo:10"
+								style="font-size: 23px; font-weight: bold; padding-top: 5px;"></span>...<br>
+							<span ng-bind="j.companyName"></span> 
 							<hr>
 							<p style="font-size: 16px;">
-								<span ng-bind="for.description | limitTo:70"
+								<span ng-bind="j.jobDescription | limitTo:60"
 									style="white-space: pre-line;"></span> ...<span><a
-									href="#!getforumbyid/{{for.id}}">[read more]</a></span>
+									href="#!viewjob/{{j.jid}}">[view job]</a></span>
 							</p>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div> -->
+		</div>
 </div>

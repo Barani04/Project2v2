@@ -13,10 +13,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.niit.dao.JobApplyDao;
 import com.niit.dao.JobDao;
 import com.niit.dao.UserDao;
 import com.niit.model.Job;
+import com.niit.model.JobApply;
 import com.niit.model.User;
 import com.niit.service.Error;
 
@@ -28,6 +31,9 @@ public class JobController {
 	
 	@Autowired
 	private JobDao jobdao;
+	
+	@Autowired
+	private JobApplyDao jobappdao;
 
 	
 	@RequestMapping(value="/savejob",method=RequestMethod.POST)
@@ -74,6 +80,53 @@ public class JobController {
 		}
 		Job job = jobdao.getJobById(jid);
 		return new ResponseEntity<Job>(job,HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/applyjob/{jobid}",method=RequestMethod.POST)
+	public ResponseEntity<?> applyJob(@PathVariable("jobid") int jid,HttpSession session) {
+		if(session.getAttribute("username")==null){
+			Error error = new Error(5, "Unauthorized User");
+			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
+		}
+		
+		String userapp =  (String) session.getAttribute("username");
+		System.out.println(userapp);
+		try{
+			JobApply jobapply = new JobApply();
+			jobapply.setJobid(jid);
+			jobapply.setUserapply(userapp);
+			jobappdao.applyJob(jobapply);
+			return new ResponseEntity<JobApply>(jobapply,HttpStatus.OK);
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+			Error error = new Error(10, "Value Not Acceptable");
+			return new ResponseEntity<Error>(error,HttpStatus.NOT_ACCEPTABLE);
+		}
+		
+	}
+	
+	@RequestMapping(value="/getappjobs/{jobid}",method = RequestMethod.GET)
+	public ResponseEntity<?> getAppliedJobs(@PathVariable("jobid") int jid,HttpSession session){
+		if(session.getAttribute("username")==null){
+			Error error = new Error(5, "Unauthorized User");
+			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
+		}
+		System.out.println(jid);
+		String userapp =  (String) session.getAttribute("username");
+		JobApply jobapplied = jobappdao.getappliedjobs(userapp,jid);
+		return new ResponseEntity<JobApply>(jobapplied,HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/applicantsnum/{jobid}",method=RequestMethod.GET)
+	public ResponseEntity<?> noOfApplicants(@PathVariable("jobid") int jid,HttpSession session){
+		if(session.getAttribute("username")==null){
+			Error error = new Error(5, "Unauthorized User");
+			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
+		}
+		System.out.println(jid);
+		List<JobApply> applicants= jobappdao.getApplicantsCount(jid);
+		int count = applicants.size();
+		return new ResponseEntity<Integer>(count,HttpStatus.OK);
 	}
 	
 	

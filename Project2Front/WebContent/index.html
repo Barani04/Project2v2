@@ -38,7 +38,7 @@ html, body {
 
 				<!-- **** Navbar menu ****-->
 				<ul class="hh hide-on-med-and-down">
-					<li><a href="#!home">Home</a></li>
+					<li><a href="#!home" ng-show="currentUser.firstname">Home</a></li>
 					<li><a class="nav-link " href="#!editprofile"
 						ng-show="currentUser.firstname">Edit Profile</a></li>
 					<!-- Requests Start-->
@@ -150,6 +150,7 @@ html, body {
 	<script src="user/userprofilecontroller.js"></script>
 	<script src="user/userservice.js"></script>
 	<script src="job/jobcontroller.js"></script>
+	<script src="job/jobdetailcontroller.js"></script>
 	<script src="job/jobservice.js"></script>
 	<script src="blog/blogcontroller.js"></script>
 	<script src="blog/blogdetailcontroller.js"></script>

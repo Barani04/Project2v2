@@ -42,16 +42,7 @@ app.controller("JobController", function(JobService,$scope,$location) {
 				})
 			}
 			
-			$scope.getJobDetails=function(jid){
-				$scope.showJobDetails=true;
-				JobService.getJobDetails(jid).then(function(response){
-					$scope.job = response.data
-					$location.path('/viewjob')
-				},function(response){
-					console.log(response.data)
-					$location.path('/login')
-				})
-			}
+			
 					
 getAllJobs()
 	})

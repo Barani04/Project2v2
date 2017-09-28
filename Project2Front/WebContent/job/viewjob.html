@@ -1,0 +1,28 @@
+<div class="card col s9">
+	<div class="card-content">
+		<div class="card-title">
+			<p style="font-size: 20px;font-weight: 500;">Job Title : <span style="font-weight: bold;">{{job.jobTitle}}</span> <span ng-if="count !=0" class="new badge red" data-badge-caption="Applications Recieved">{{count}}</span><span ng-if="count ==0" class="new badge blue" data-badge-caption="Be the first one to Apply"></span></p>
+			<p style="font-size: 20px;"><span style="font-weight: 500;">Company Name : </span><span style="font-weight: bold;">{{job.companyName}}</span></p>
+			<p style="font-size: 15px;"><i class="grey-text tiny material-icons">access_time</i> <span style="font-weight: 500;">Posted On : </span><span style="font-weight: bold;">{{job.postedOn | date:'dd/MM/yyyy'}}</span></p>			
+		</div>
+		<hr style="opacity: 0.15;">
+		<p style="font-size: 20px;font-weight: 500;">Skills Required : </p>
+		<p style="font-size: 15px;padding-left: 5px;">{{job.skillRequired}}</p>
+		<br/>
+		<p style="font-size: 20px;font-weight: 500;">Description : </p>
+		<p style="font-size: 15px;padding-left: 5px;">{{job.jobDescription}}</p>
+		<br/>
+		<p style="font-size: 20px;font-weight: 500;">Experience Required : </p>
+		<p style="font-size: 15px;padding-left: 5px;">{{job.yrsOfExp}} years</p>
+		<br/>
+		<p style="font-size: 20px;font-weight: 500;">Skill Required : </p>
+		<p style="font-size: 15px;padding-left: 5px;"> &#8377; {{job.salary}} per annum</p>
+		<br/>
+		<p style="font-size: 20px;font-weight: 500;">Job Location : </p>
+		<p style="font-size: 15px;padding-left: 5px;">{{job.location}}</p>
+	</div>
+	<div class="card-action center-align">
+		<a ng-click="applyJob()" ng-if="applied" class="btn  green accent-2  waves-effect waves-light">Apply Job</a>
+		<a  ng-if="applied==false" class="btn-flat disabled  green accent-2  waves-effect waves-light">Job Applied</a>
+	</div>
+</div>

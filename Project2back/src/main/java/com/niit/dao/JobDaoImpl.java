@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.niit.model.Job;
+import com.niit.model.JobApply;
 
 @Repository
 @Transactional
@@ -36,5 +37,7 @@ public class JobDaoImpl implements JobDao {
 		Job job=(Job) session.get(Job.class,jid);
 		return job;
 	}
+
+	
 
 }
