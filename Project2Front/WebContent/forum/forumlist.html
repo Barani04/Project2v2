@@ -1,0 +1,32 @@
+<div ng-show="currentUser.role=='ADMIN'">
+<h4>List of Forums Waiting For Approval</h4>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Title</th><th>Created By</th><th>Created On</th><th>Action</th>
+		</tr>
+	</thead>
+	<tbody ng-controller="ForumController">
+		<tr ng-repeat="forum in forumWaiting">
+			<td><a href="#!getforumbyid/{{forum.id}}">{{forum.forumTitle}}</a></td>
+			<td>{{forum.createdBy.username}}</td>
+			<td>{{forum.createdOn | date:'dd/MM/yyyy'}}</td>
+			<td>
+				 <div class="switch">
+                 	<label>
+                  		Disable
+                  		<input type="checkbox" ng-model="forum.status" ng-change="changeForumStatus(forum.id)">
+                 		<span class="lever"></span>
+                  		Active
+                  	</label>
+                </div>
+			</td>
+		</tr>
+		<tr ng-show="formes!=null">
+			<td colspan=4 style="color:#ff6666;"><h3>{{formes}}</h3></td>
+		</tr>
+	</tbody>
+</table>
+
+
+</div>

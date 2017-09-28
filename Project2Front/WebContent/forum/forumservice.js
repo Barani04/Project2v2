@@ -11,10 +11,6 @@ app.factory('ForumService',function($http){
 		return $http.post(BASE_URL+"/saveforum",forum)
 	}
 	
-	forumService.getallForum=function(){
-		return $http.get(BASE_URL+"/getallforum")
-	}
-	
 	forumService.getForumById=function(id){
 		return $http.get(BASE_URL+"/getforumbyid/"+id)
 	}
@@ -31,5 +27,21 @@ app.factory('ForumService',function($http){
 		return $http.post(BASE_URL+"/addforumpost",forumpost)
 	}
 	
+	forumService.getForumApproved = function(){
+		return $http.get(BASE_URL+"/getallforum/"+1)
+	}
+	forumService.getForumWaitingForApproval = function(){
+		return $http.get(BASE_URL+"/getallforum/"+0)
+	}
+	
+	forumService.changeForumStatus=function(id){
+		return $http.post(BASE_URL+"/approveforum/"+id)
+	}
+	forumService.isParticipant=function(forumid){
+		return $http.get(BASE_URL+"/isparticipant/"+forumid)
+	}
+	forumService.joinForum = function(forumid) {
+		return $http.post(BASE_URL+"/joinforum/"+forumid)
+	}
 	return forumService;
 })

@@ -23,15 +23,13 @@ app.controller('ForumController',function(ForumService,$scope,$location){
 		})
 	}
 	
-	
-		ForumService.getallForum().then(function(response){
-			console.log(response.data)
-			$scope.getallforum = response.data
-		},function(response){
-			if(response.status==401){
-				$scope.error=response.data
-				$location.path('/home')
-			}
-		})
+	ForumService.getForumApproved().then(function(response){
+		$scope.forumApproved = response.data
+	},function(response){
+		if(response.status==401){
+			$scope.error=response.data
+			$location.path('/login')
+		}
+	})
 		
 })

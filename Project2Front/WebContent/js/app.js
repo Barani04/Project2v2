@@ -80,6 +80,11 @@ app.config(function($routeProvider) {
 		controller:'ReqController'
 	
 	})
+	.when('/request/getallforum',{
+		templateUrl:'forum/forumlist.html',
+		controller:'ReqController'
+	
+	})
 	
 	.when('/viewblogs',{
 		templateUrl:'blog/viewblogs.html',
@@ -103,7 +108,7 @@ app.config(function($routeProvider) {
 		controller:'ForumController'
 	})
 	
-	.when('/getallforum',{
+	.when('/viewforums',{
 		templateUrl:'forum/getallforum.html',
 		controller:'ForumController'
 	})
@@ -124,6 +129,9 @@ app.run(function(AuthService,$rootScope,$cookieStore,$location) {
 	}
 	if($rootScope.len==undefined){
 		$rootScope.len=$cookieStore.get("len")
+	}
+	if($rootScope.forlen==undefined){
+		$rootScope.forlen=$cookieStore.get("forlen")
 	}
 	
 		$rootScope.logout=function(){

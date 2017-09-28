@@ -6,7 +6,7 @@
 					<div class="card-title">
 						<h4>
 							{{forumdetail.forumTitle}}
-						</h4>
+						<a ng-click="joinForum()" style="float: right;" class="btn  waves-effect waves-light" ng-if="isparticipant"><i class="material-icons small">add</i>JoinForum</a></h4>
 					</div>
 					<hr>
 					<div>{{forumdetail.description}}</div>
@@ -20,5 +20,19 @@
 					</p></td>
 			</tr>
 		</table>
+		<button ng-if="isparticipant == false"class="btn-floating btn-large waves-effect waves-light red modal-trigger tooltipped" data-target="post" data-poition="bottom" data-tooltip="Post your queries" style="float: right;"><i class="material-icons">reply</i></button>
+	</div>
+	
+</div>
+
+<div class="card ccenter-align modal rounded" style="margin-top:15px;" id="post">
+	<div class="card-content col s8">
+		
 	</div>
 </div>
+<script type="text/javascript">
+$(document).ready(function(){
+    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+    $('.modal').modal();
+  });
+</script>

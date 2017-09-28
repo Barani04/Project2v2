@@ -1,5 +1,5 @@
-<h4>List of All Forum</h4>
-<div class="row" ng-repeat="forum in getallforum">
+<h4 ng-show="currentUser.firstname">Forums</h4>
+<div class="row" ng-repeat="forum in forumApproved">
 	<div class="card col s4"
 		style="width: 900px; height: 200px; margin-left: 10px;">
 		<div class="card-content" style="padding: 0px;">
