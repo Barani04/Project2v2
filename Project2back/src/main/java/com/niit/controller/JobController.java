@@ -129,5 +129,16 @@ public class JobController {
 		return new ResponseEntity<Integer>(count,HttpStatus.OK);
 	}
 	
+	@RequestMapping(value="/appliedjobs/{userId}",method=RequestMethod.GET)
+	public ResponseEntity<?> userAppliedJobs(@PathVariable("userId") String userapp,HttpSession session){
+		if(session.getAttribute("username")==null){
+			Error error = new Error(5, "Unauthorized User");
+			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
+		}
+		List<Job> appliedjobs = jobappdao.getUserAppliedJobs(userapp); 
+		return new ResponseEntity<List<Job>>(appliedjobs,HttpStatus.OK);
+		
+	}
+	
 	
 }

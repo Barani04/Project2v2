@@ -9,6 +9,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import com.niit.model.Blog;
+import com.niit.model.Forum;
 import com.niit.model.User;
 
 @Service("emailService")
@@ -81,6 +82,34 @@ public class EmailService {
 			e.printStackTrace();
 		}
 
+	}
+
+	public void approvedForumNotify(Forum forum) {
+		MimeMessage mimeMsg = mailSender.createMimeMessage();
+		
+		MimeMessageHelper helper = null;
+		
+		try{
+			helper = new MimeMessageHelper(mimeMsg, false, "text/html");
+			StringBuilder htmlMsg = new StringBuilder();
+			
+			htmlMsg.append("Dear <strong>"+forum.getCreatedBy().getFirstname()+"</strong>,<br/>");
+			htmlMsg.append("<p>Your Forum has been approved by Admin!<p>");
+			htmlMsg.append("<p>Keep Posting....!</p>");
+			
+			mimeMsg.setContent(htmlMsg.toString(), "text/html");
+			
+			helper.setTo(forum.getCreatedBy().getEmail());
+			helper.setSubject("Forum Approval");
+			helper.setFrom(from);
+			
+			mailSender.send(mimeMsg);
+			
+			
+		}catch (MessagingException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 }

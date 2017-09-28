@@ -39,14 +39,14 @@ html, body {
 				<!-- **** Navbar menu ****-->
 				<ul class="hh hide-on-med-and-down">
 					<li><a href="#!home" ng-show="currentUser.firstname">Home</a></li>
-					<li><a class="nav-link " href="#!editprofile"
-						ng-show="currentUser.firstname">Edit Profile</a></li>
 					<!-- Requests Start-->
 					<ul id="dropdown" class="dropdown-content">
 						<li><a class="nav-link " href="#!request/useracc">Users<span
 								class="new badge">{{ul}}</span></a></li>
 						<li><a class="nav-link" href="#!request/getallBlogs">Blogs<span
 								class="new badge">{{len}}</span></a></li>
+						<li><a class="nav-link" href="#!request/getallforum">Forums<span
+								class="new badge">{{forlen}}</span></a></li>
 					</ul>
 					<li ng-show="currentUser.role=='ADMIN'"><a
 						class="dropdown-button " href="#" data-activates="dropdown">Request</a></li>
@@ -84,7 +84,7 @@ html, body {
 					<ul id="forum" class="dropdown-content">
 						<li><a class="nav-link " href="#!createforum"
 							ng-show="currentUser.firstname">Create Forum</a></li>
-						<li><a class="nav-link " href="#!getallforum"
+						<li><a class="nav-link " href="#!viewforums"
 							ng-show="currentUser.firstname">Get All Forum</a></li>
 					</ul>
 					<li><a class="dropdown-button " href="#"
@@ -102,8 +102,15 @@ html, body {
 					<li class="right"><a class="nav-link " href=""
 						ng-click="logout()" ng-show="currentUser.firstname">LogOut</a></li>
 
+
+					<ul id="user" class="dropdown-content">
+						<li><a class="nav-link " href="#!viewprofile/{{currentUser.username}}"
+							ng-show="currentUser.firstname">View Profile</a></li>
+						<li><a class="nav-link " ng-click="logout()"
+							ng-show="currentUser.firstname">Log Out</a></li>
+					</ul>
 					
-					<li class="right"><a class="nav-link " href="#!viewprofile/{{currentUser.username}}"
+					<li class="right"><a class="dropdown-button nav-link" data-activates="user"
 						ng-show="currentUser.firstname">Welcome
 							{{currentUser.username}}</a></li>
 							

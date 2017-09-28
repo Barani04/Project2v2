@@ -57,8 +57,8 @@
 		<div class="card-title ct">
 			<h4>Forums</h4></div>
 			<div class="card-content cg">
-				<div ng-init="fc.getallForum()">
-					<div class="card col s3 c2 animated hoverable" ng-repeat="for in getallforum">
+				<div ng-init="fc.getForumApproved()">
+					<div class="card col s3 c2 animated hoverable" ng-repeat="for in forumApproved">
 						<div class="card-content cc">
 							<span ng-bind="for.forumTitle"
 								style="font-size: 23px; font-weight: bold; padding-top: 5px;"></span><br>

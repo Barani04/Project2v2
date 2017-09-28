@@ -1,27 +1,30 @@
 <style type="text/css">
+.card{
+	width:1100px;
+}
 .card-title{
- background-image:url(https://lawinsport-softfforge.netdna-ssl.com/images/article_images/Shaking_hands_with_sunlight_in_background.jpg);
- height:230px;
- width:650px;
+ background-image:url(http://www.kakadutourism.com/wp-content/uploads/2015/06/Infinity-Pool-Gunlom-1100x300.jpg);
+ height:300px;
+ width:1100px;
 }
 
 </style>
 
-<div class="card col s8 animated bounceIn">
+<div class="card col s12 m12 animated bounceIn">
 	<div class="card-title white-text">
 		<table>
 				<tr>
-					<td style="padding-top:100px;padding-right:0px;width:90px;">
-						<img src="http://localhost:8083/Project2back/getimage/{{profile.username}}" class="circle responsive-img" width="80px" height="80px" >
+					<td style="padding-top:230px;padding-right:0px;padding-left:40px;width:160px;">
+						<img src="http://localhost:8083/Project2back/getimage/{{profile.username}}" class="circle responsive-img" width="160px" height="160px" >
 					</td>						
-					<td style="padding-top:100px;font-weight:bold;">
+					<td style="padding-top:200px; padding-left:20px;font-weight:bold;">
 						{{profile.username}}		
 					</td>
 				</tr>
 		</table>	
 	</div>
-	<div class="card-content">
-		<h4>User Info:</h4>
+	<div class="card-content" style="margin-top: 30px;">
+		<h4>User Info: <span style="float: right;"><a ng-show="profile.username == currentUser.username" href="#!editprofile"><span class=" tiny material-icons black-text tooltipped" data-position="right" data-delay="50" data-tooltip="edit profile">edit</span></a></span></h4>
 		<div style="font-size:18px;margin-left:10px;">
 			<b>Email Id : </b>{{profile.email}}
 			<br/>
@@ -31,7 +34,7 @@
 		</div>
 		<h4>User Blogs:</h4>
 		<ul class="row">
-			<li class="card col s4 hoverable" ng-repeat="blogPost in blogPosts" style="width:290px;margin-right: 5px;">
+			<li class="card col s6 m6 hoverable" ng-repeat="blogPost in blogPosts" style="width:480px;margin-right: 30px;">
 				<a class="card-content" style="color:black;padding-top: 0px;"  href="#!viewblogbyid/{{blogPost.bid}}" >
 					<p style="margin:0px 10px;"> <h5 style="color:#565c87;" >{{blogPost.blogTitle}}<small style="font-size:12px ;float: right;color:#038468;">{{blogPost.postedOn|date:dd/MM/yyyy}}</small></h5></p>
 					<hr style="margin:0px 10px; color:#f2f5f9;opacity: 0.25;">
@@ -39,5 +42,21 @@
 				</a>
 			<li ng-if="post!=null">{{post}}<li>
 		</ul>
+		<h4>Applied Jobs:</h4>
+		<ul class="row">
+			<li class="card col s6 m6 hoverable" ng-repeat="job in userappjobs" style="width:480px;margin-right: 30px;">
+				<a class="card-content" style="color:black;padding-top: 0px;"  href="#!viewjob/{{job.jid}}" >
+					<p style="margin:0px 10px;"> <h5 style="color:#565c87;" >{{job.jobTitle | limitTo:12}}...<small style="font-size:12px ;float: right;color:#038468;">{{job.postedOn|date:dd/MM/yyyy}}</small></h5></p>
+					<hr style="margin:0px 10px; color:#f2f5f9;opacity: 0.25;">
+					<p class="truncate" style="margin-left:10px;">{{job.jobDescription}}</p>
+				</a>
+			<li ng-if="note!=null">{{note}}<li>
+		</ul>
+		
 	</div>
 </div>
+<script type="text/javascript">
+$(document).ready(function(){
+    $('.tooltipped').tooltip({delay: 50});
+  });
+</script>

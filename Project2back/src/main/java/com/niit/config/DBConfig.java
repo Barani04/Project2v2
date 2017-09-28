@@ -17,6 +17,7 @@ import com.niit.model.Blog;
 import com.niit.model.BlogComment;
 import com.niit.model.Forum;
 import com.niit.model.ForumPosts;
+import com.niit.model.ForumRequest;
 import com.niit.model.Friend;
 import com.niit.model.Job;
 import com.niit.model.JobApply;
@@ -35,8 +36,9 @@ public class DBConfig {
 		hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.Oracle10gDialect");
 		hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update");
 		hibernateProperties.setProperty("hibernate.show_sql", "true");
+		hibernateProperties.setProperty("hibernate.format_sql", "true");
 		lsf.addProperties(hibernateProperties);
-		Class classes[]=new Class[]{User.class,Job.class,Blog.class,BlogComment.class,Forum.class,ForumPosts.class,Friend.class,ProfilePicture.class,JobApply.class};
+		Class classes[]=new Class[]{User.class,Job.class,Blog.class,BlogComment.class,Forum.class,ForumPosts.class,Friend.class,ProfilePicture.class,JobApply.class,ForumRequest.class};
 		return lsf.addAnnotatedClasses(classes).buildSessionFactory();
 	}
 

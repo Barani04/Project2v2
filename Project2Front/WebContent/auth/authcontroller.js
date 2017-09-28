@@ -2,7 +2,7 @@
  * 
  */
 
-app.controller('AuthController',function(AuthService,UserService,BlogService,$scope,$rootScope,$location,$cookieStore){
+app.controller('AuthController',function(AuthService,UserService,BlogService,ForumService,$scope,$rootScope,$location,$cookieStore){
 	$scope.user={}
 	
 	$scope.registerUser=function(){
@@ -39,6 +39,14 @@ app.controller('AuthController',function(AuthService,UserService,BlogService,$sc
 			},function(response){
 				$scope.error = response.data
 				console.log(response.status)
+			})
+			
+			ForumService.getForumWaitingForApproval().then(function(response){
+				$rootScope.forlen=response.data.length;
+				$cookieStore.put("forlen",response.data.length)
+			},function(response){
+					$scope.error=response.data
+					$location.path('/login')
 			})
 			
 		},function(response){
