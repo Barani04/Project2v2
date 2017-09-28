@@ -21,14 +21,14 @@ public class ForumDaoImpl implements ForumDao {
 	
 	public void saveForum(Forum forum) {
 		Session session = sessionFactory.getCurrentSession();
-		session.saveOrUpdate(forum);
+		session.save(forum);
 		
 	}
 
 	@Override
-	public List<Forum> getAllForum() {
+	public List<Forum> getAllForum(int approved) {
 		Session session = sessionFactory.getCurrentSession();
-		Query query =session.createQuery("from Forum");
+		Query query =session.createQuery("from Forum where status="+approved);
 		return query.list();
 	}
 
@@ -40,6 +40,11 @@ public class ForumDaoImpl implements ForumDao {
 		Forum forum = (Forum) query.uniqueResult();
 		return forum;
 	}
-	
 
+	@Override
+	public void updateForum(Forum forum) {
+		Session session = sessionFactory.getCurrentSession();
+		session.update(forum);
+		
+	}
 }

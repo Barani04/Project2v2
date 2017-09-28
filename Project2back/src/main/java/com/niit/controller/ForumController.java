@@ -15,9 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.niit.dao.ForumDao;
+import com.niit.dao.ForumJoinDao;
 import com.niit.dao.UserDao;
+import com.niit.model.Blog;
 import com.niit.model.Forum;
+import com.niit.model.ForumRequest;
 import com.niit.model.User;
+import com.niit.service.EmailService;
 import com.niit.service.Error;
 
 @Controller
@@ -28,6 +32,12 @@ public class ForumController {
 	
 	@Autowired
 	private UserDao userdao;
+	
+	@Autowired
+	private ForumJoinDao forjoindao;
+	
+	@Autowired
+	private EmailService emailService;
 	
 	@RequestMapping(value="/saveforum",method=RequestMethod.POST)
 	public ResponseEntity<?> createForum(@RequestBody Forum forum,HttpSession session) {
@@ -40,7 +50,9 @@ public class ForumController {
 		User user = userdao.getUserByUsername(username);
 		forum.setCreatedOn(new Date());
 		forum.setCreatedBy(user);
-		forum.setStatus(true);
+		if(forum.getCreatedBy().getRole() =="ADMIN"){
+			forum.setStatus(true);
+		}
 		try{
 			forumdao.saveForum(forum);
 			return new ResponseEntity<Forum>(forum,HttpStatus.OK);
@@ -50,16 +62,14 @@ public class ForumController {
 		}
 	}
 	
-	@RequestMapping(value="/getallforum",method=RequestMethod.GET)
-	public ResponseEntity<?> getAllForum(HttpSession session){
+	@RequestMapping(value="/getallforum/{status}",method=RequestMethod.GET)
+	public ResponseEntity<?> getAllForum(@PathVariable int status,HttpSession session){
 		if(session.getAttribute("username")==null){		
 			Error error = new Error(5, "Unauthorized User");
 			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
 		}
-		List<Forum> forums = forumdao.getAllForum();
-		return new ResponseEntity<List<Forum>>(forums, HttpStatus.OK);
-
-		
+		List<Forum> forums = forumdao.getAllForum(status);
+		return new ResponseEntity<List<Forum>>(forums, HttpStatus.OK);	
 	}
 	
 	@RequestMapping(value="/getforumbyid/{id}",method=RequestMethod.GET)
@@ -72,6 +82,52 @@ public class ForumController {
 		return new ResponseEntity<Forum>(forumdetail,HttpStatus.OK);
 	}
 	
+	@RequestMapping(value="/approveforum/{id}",method=RequestMethod.POST)
+	public ResponseEntity<?> approveForum(@PathVariable("id") int fid,HttpSession session){
+		if(session.getAttribute("username")==null){
+			Error error = new Error(5, "Unauthorized User");
+			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
+		}
+		Forum forum = forumdao.getForumById(fid);
+		forum.setStatus(true);
+		forumdao.updateForum(forum);
+		emailService.approvedForumNotify(forum);
+		return new ResponseEntity<Forum>(forum,HttpStatus.OK);
+		
+	}
+	
+	@RequestMapping(value="/joinforum/{forumid}",method=RequestMethod.POST)
+	public ResponseEntity<?> joinForum(@PathVariable("forumid") int forid,HttpSession session){
+		if(session.getAttribute("username")==null){
+			Error error = new Error(5, "Unauthorized User");
+			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
+		}	
+		String userapp =  (String) session.getAttribute("username");
+		System.out.println(userapp);
+		try{
+			ForumRequest forreq = new ForumRequest();
+			forreq.setJoinuser(userapp);
+			forreq.setForumid(forid);
+			forjoindao.joinForum(forreq);
+			return new ResponseEntity<ForumRequest>(forreq,HttpStatus.OK);
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+			Error error = new Error(10, "Value Not Acceptable");
+			return new ResponseEntity<Error>(error,HttpStatus.NOT_ACCEPTABLE);
+		}
+	}
+	
+	@RequestMapping(value="/isparticipant/{forumid}",method=RequestMethod.GET)
+	public ResponseEntity<?> isParticipant(@PathVariable("forumid") int forid,HttpSession session){
+		if(session.getAttribute("username")==null){
+			Error error = new Error(5, "Unauthorized User");
+			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
+		}	
+		String userapp =  (String) session.getAttribute("username");
+		ForumRequest forreq = forjoindao.isParticipantUser(forid,userapp);
+		return new ResponseEntity<ForumRequest>(forreq,HttpStatus.OK);
+	}
 	
 	
+		
 }

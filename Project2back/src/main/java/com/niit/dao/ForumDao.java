@@ -8,7 +8,11 @@ public interface ForumDao {
 	
 	void saveForum(Forum forum);
 
-	List<Forum> getAllForum();
 
 	Forum getForumById(int forumId);
+
+	List<Forum> getAllForum(int approved);
+
+
+	void updateForum(Forum forum);
 }
