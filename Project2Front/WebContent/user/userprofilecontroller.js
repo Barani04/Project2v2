@@ -2,7 +2,7 @@
  * User Profile Controller
  */
 
-app.controller('UserProfileController',function(UserService,BlogService,$scope,$location,$routeParams){
+app.controller('UserProfileController',function(UserService,BlogService,JobService,$scope,$location,$routeParams){
 	$scope.profile = {};
 	var userId = $routeParams.username
 	
@@ -10,6 +10,7 @@ app.controller('UserProfileController',function(UserService,BlogService,$scope,$
 			$scope.profile = response.data;
 			console.log(response.data)
 			getBlogbyUsername(userId)
+			getUserAppliedJobs(userId)
 		},function(response){
 			if(response.status==401){
 				$scope.error=response.data
@@ -24,6 +25,24 @@ app.controller('UserProfileController',function(UserService,BlogService,$scope,$
 			if(response.data.length < 1){
 				$scope.post="No Blogs Posted Yet"
 			}
+		},function(response){
+			if(response.status==401){
+				$scope.error=response.data
+				$location.path('/home')
+			}
+		})
+	}
+	
+	function getUserAppliedJobs(userId){
+		JobService.getUserAppliedJobs(userId).then(function(response){
+			if(response.data.length < 1){
+				$scope.note="NO JOBS APPLIED"
+			}
+			else{
+				$scope.userappjobs = response.data
+			}
+			console.log($scope.userappjobs)
+			
 		},function(response){
 			if(response.status==401){
 				$scope.error=response.data

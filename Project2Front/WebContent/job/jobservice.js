@@ -29,5 +29,8 @@ app.factory('JobService',function($http){
 	jobService.numOfApplicants = function(jobid){
 		return $http.get(BASE_URL+"/applicantsnum/"+jobid)
 	}
+	jobService.getUserAppliedJobs = function(userId){
+		return $http.get(BASE_URL+"/appliedjobs/"+userId)
+	}
 	return jobService;
 })
