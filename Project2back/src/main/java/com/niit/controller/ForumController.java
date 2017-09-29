@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.niit.dao.ForumDao;
 import com.niit.dao.ForumJoinDao;
+import com.niit.dao.ForumPostDao;
 import com.niit.dao.UserDao;
 import com.niit.model.Blog;
 import com.niit.model.Forum;
+import com.niit.model.ForumPosts;
 import com.niit.model.ForumRequest;
 import com.niit.model.User;
 import com.niit.service.EmailService;
@@ -35,6 +37,9 @@ public class ForumController {
 	
 	@Autowired
 	private ForumJoinDao forjoindao;
+	
+	@Autowired
+	private ForumPostDao forpostdao;
 	
 	@Autowired
 	private EmailService emailService;
@@ -128,6 +133,32 @@ public class ForumController {
 		return new ResponseEntity<ForumRequest>(forreq,HttpStatus.OK);
 	}
 	
+	@RequestMapping(value="/add/forumpost",method=RequestMethod.POST)
+	public ResponseEntity<?> addForumPost(@RequestBody ForumPosts forumpost,HttpSession session){
+		if(session.getAttribute("username")==null){
+			Error error = new Error(5, "Unauthorized User");
+			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
+		}
+		forumpost.setPostDate(new Date());
+		try{
+			forpostdao.saveForumPost(forumpost);
+			return new ResponseEntity<ForumPosts>(forumpost,HttpStatus.OK);
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+			Error error = new Error(10, "Value Not Acceptable");
+			return new ResponseEntity<Error>(error,HttpStatus.NOT_ACCEPTABLE);
+		}
+	}
 	
+	@RequestMapping(value="/list/forumpost/{forumid}")
+	public ResponseEntity<?> listForumPosts(@PathVariable("forumid") int forumid,HttpSession session){
+		if(session.getAttribute("username")==null){
+			Error error = new Error(5, "Unauthorized User");
+			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
+		}
+		List<ForumPosts> forumposts = forpostdao.getAllForumPosts(forumid);
+		return new ResponseEntity<List<ForumPosts>>(forumposts,HttpStatus.OK);
+		
+	}
 		
 }

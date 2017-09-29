@@ -28,12 +28,9 @@ public class ForumPosts {
 
 	private String topic;
 	
-	@ManyToOne
-	@JoinColumn(name="Forum_id")
-	private Forum forum;
+	private int forid;
 	
-	@ManyToOne
-	private User postedBy;
+	private String postedBy;
 	
 	private String description;
 	
@@ -72,19 +69,19 @@ public class ForumPosts {
 		this.postDate = postDate;
 	}
 
-	public Forum getForum() {
-		return forum;
+	public int getForid() {
+		return forid;
 	}
 
-	public void setForum(Forum forum) {
-		this.forum = forum;
+	public void setForid(int forid) {
+		this.forid = forid;
 	}
 
-	public User getPostedBy() {
+	public String getPostedBy() {
 		return postedBy;
 	}
 
-	public void setPostedBy(User postedBy) {
+	public void setPostedBy(String postedBy) {
 		this.postedBy = postedBy;
 	}
 

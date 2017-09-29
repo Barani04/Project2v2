@@ -30,7 +30,7 @@ public class ForumPostDaoImpl implements ForumPostDao {
 	@Override
 	public List<ForumPosts> getAllForumPosts(int forumId) {
 		Session session = sessionFactory.getCurrentSession();
-		Query query = session.createQuery("from ForumPosts where forum.id = ?");
+		Query query = session.createQuery("from ForumPosts where forid = ?");
 		query.setInteger(0, forumId);
 		return query.list();
 	}

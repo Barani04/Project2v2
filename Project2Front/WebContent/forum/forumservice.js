@@ -37,11 +37,21 @@ app.factory('ForumService',function($http){
 	forumService.changeForumStatus=function(id){
 		return $http.post(BASE_URL+"/approveforum/"+id)
 	}
+
 	forumService.isParticipant=function(forumid){
 		return $http.get(BASE_URL+"/isparticipant/"+forumid)
 	}
+	
 	forumService.joinForum = function(forumid) {
 		return $http.post(BASE_URL+"/joinforum/"+forumid)
+	}
+	
+	forumService.addForumPost=function(forumpost){
+		return $http.post(BASE_URL+"/add/forumpost",forumpost)
+	}
+	
+	forumService.listForumPosts = function(forumid) {
+		return $http.get(BASE_URL+"/list/forumpost/"+forumid)
 	}
 	return forumService;
 })

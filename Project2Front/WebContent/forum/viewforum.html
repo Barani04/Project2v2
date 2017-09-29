@@ -1,12 +1,49 @@
-<div class="card col s8" style="width: 800px;">
+<!-- Modal form -->
+<div class="card center-align modal col s6"
+	style="border-radius: 15px; width: 800px; position: absolute; margin: 50px auto;"
+	id="post">
+	<div class="card-content modal-content center-align">
+		<div class="card-title">
+			<h4 class="center-align">Forum Post</h4>
+		</div>
+		<hr>
+		<form>
+			<div class="row">
+				<div class="input-field col s8 offset-s2">
+					<i class="material-icons prefix black-text">title</i> <input
+						id="fptopic" type="text" ng-model="forumpost.topic"
+						class="validate"> <label for="fptopic">ForumPost
+						Topic</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s8 offset-s2">
+					<i class="material-icons prefix black-text">description</i>
+					<textarea id="fpdes" class="materialize-textarea"
+						ng-model="forumpost.description"></textarea>
+					<label for="fpdes">ForumPost Description</label>
+				</div>
+			</div>
+
+			<div class="card-action modal-footer col s4 offset-s4">
+				<a class="btn light-green darken-2" ng-click="addForumPost()">Add
+					Post</a>
+			</div>
+		</form>
+	</div>
+</div>
+
+<div class="card col s8" style="width: 800px; position: relative;">
 	<div class="card-content">
 		<table>
 			<tr>
 				<td style="width: 650px;">
 					<div class="card-title">
 						<h4>
-							{{forumdetail.forumTitle}}
-						<a ng-click="joinForum()" style="float: right;" class="btn  waves-effect waves-light" ng-if="isparticipant"><i class="material-icons small">add</i>JoinForum</a></h4>
+							{{forumdetail.forumTitle}} <a ng-click="joinForum()"
+								style="float: right;" class="btn  waves-effect waves-light"
+								ng-if="isparticipant"><i class="material-icons small">add</i>JoinForum</a>
+						</h4>
 					</div>
 					<hr>
 					<div>{{forumdetail.description}}</div>
@@ -20,23 +57,58 @@
 					</p></td>
 			</tr>
 		</table>
-		<button ng-if="isparticipant == false"class="btn-floating btn-large waves-effect waves-light red modal-trigger tooltipped" data-target="post" data-poition="bottom" data-tooltip="Post your queries" style="float: right;"><i class="material-icons">reply</i></button>
+		<button ng-if="isparticipant == false"
+			class="btn-floating btn-large waves-effect waves-light red modal-trigger "
+			data-target="post" 
+			 style="float: right;">
+			<i class="material-icons tooltipped" data-poition="bottom" data-tooltip="Post your queries">reply</i>
+		</button>
 	</div>
-	
 </div>
-
-<<<<<<< HEAD
-<div class="card center-align modal" style="border-radius: 20px;" id="post">
-=======
-<div class="card ccenter-align modal rounded" style="margin-top:15px;" id="post">
->>>>>>> branch 'master' of https://github.com/Barani04/Project2v2.git
-	<div class="card-content col s8">
-		
+<div ng-if="fplen == 0 && isparticipant == false">
+	<div class="card col s6 offset-s3"
+		style="width: 700px; position: relative; margin-top: 150px; height: 300px; padding: auto; text-align: center;">
+		<div class="card-content">
+			<h2 style="padding-top: 70px;">NO POSTS YET...!</h2>
+		</div>
+	</div>
+</div>
+<div ng-if="fplen != 0">
+	<div class="card col s6 m6 offset-s3"
+		style="width: 800px; position: relative; margin-top: 150px; border-radius:15px; height: 300px; padding: auto;">
+		<div class="card-content" ng-repeat="post in listposts">
+			<div class="card s6 hoverable" style="border-radius:15px;">
+				<div class="card-content">
+					<table>
+						<tr>
+							<td style="width: 650px;">
+							<p style="font-weight: bold;font-size: 25px;">{{post.topic}}</p>
+							<hr>
+							<p style="font-size: 18px;">{{post.description}}</p>
+							</td>
+							<td class="center-align" style="width: 150px;"><img
+							src="http://localhost:8083/Project2back/getimage/{{post.postedBy}}"
+							class="circle" width="80px" height="80px"> <small>PostedBy:{{post.postedBy}}</small>
+							<p>
+								<small>Posted On:{{post.postDate |
+								date:dd/MM/yyyy}}</small>
+							</p></td>
+						</tr>
+					</table>
+					<button ng-if="isparticipant == false"
+			class="btn-floating btn waves-effect waves-light red modal-trigger tooltipped"
+			data-target="reply" data-poition="bottom"
+			data-tooltip="reply to query" style="float: right;">
+			<i class="material-icons">reply</i>
+		</button>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){
-    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
-    $('.modal').modal();
-  });
+	$(document).ready(function() {
+		// the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+		$('.modal').modal();
+	});
 </script>
