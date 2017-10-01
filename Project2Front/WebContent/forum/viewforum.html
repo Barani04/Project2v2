@@ -38,6 +38,8 @@
 		<table>
 			<tr>
 				<td style="width: 650px;">
+				<marquee ng-if="isparticipant == true "  bgcolor="red"  direction="left" style="color:white;" width="650px">You Can only post once you join the forum...</marquee>
+				<marquee ng-if="isparticipant == false && participant.reqstatus == false " width="650px" style="color:white;" bgcolor="blue" direction="left" >Your request to join is sent you can post here once the admin accepts your request...</marquee>
 					<div class="card-title">
 						<h4>
 							{{forumdetail.forumTitle}} <a ng-click="joinForum()"
@@ -57,7 +59,7 @@
 					</p></td>
 			</tr>
 		</table>
-		<button ng-if="isparticipant == false"
+		<button ng-if="isparticipant == false && participant.reqstatus == true"
 			class="btn-floating btn-large waves-effect waves-light red modal-trigger "
 			data-target="post" 
 			 style="float: right;">
@@ -65,7 +67,8 @@
 		</button>
 	</div>
 </div>
-<div ng-if="fplen == 0 && isparticipant == false">
+
+<div ng-if="fplen == 0 && participant.reqstatus == true">
 	<div class="card col s6 offset-s3"
 		style="width: 700px; position: relative; margin-top: 150px; height: 300px; padding: auto; text-align: center;">
 		<div class="card-content">
@@ -73,7 +76,7 @@
 		</div>
 	</div>
 </div>
-<div ng-if="fplen != 0">
+<div ng-if="fplen != 0 && participant.reqstatus == true">
 	<div class="card col s6 m6 offset-s3"
 		style="width: 800px; position: relative; margin-top: 150px; border-radius:15px; height: 300px; padding: auto;">
 		<div class="card-content" ng-repeat="post in listposts">
@@ -95,12 +98,6 @@
 							</p></td>
 						</tr>
 					</table>
-					<button ng-if="isparticipant == false"
-			class="btn-floating btn waves-effect waves-light red modal-trigger tooltipped"
-			data-target="reply" data-poition="bottom"
-			data-tooltip="reply to query" style="float: right;">
-			<i class="material-icons">reply</i>
-		</button>
 				</div>
 			</div>
 		</div>

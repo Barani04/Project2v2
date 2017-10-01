@@ -109,10 +109,17 @@ public class ForumController {
 		}	
 		String userapp =  (String) session.getAttribute("username");
 		System.out.println(userapp);
+		User user = userdao.getUserByUsername(userapp);
+		Forum forum = forumdao.getForumById(forid);
 		try{
 			ForumRequest forreq = new ForumRequest();
 			forreq.setJoinuser(userapp);
 			forreq.setForumid(forid);
+			forreq.setForumTitle(forum.getForumTitle());
+			if(user.getRole()=="ADMIN"){
+			forreq.setReqstatus(true);
+			}
+			forreq.setReqstatus(false);
 			forjoindao.joinForum(forreq);
 			return new ResponseEntity<ForumRequest>(forreq,HttpStatus.OK);
 		}catch (Exception e) {
@@ -150,7 +157,7 @@ public class ForumController {
 		}
 	}
 	
-	@RequestMapping(value="/list/forumpost/{forumid}")
+	@RequestMapping(value="/list/forumpost/{forumid}",method=RequestMethod.GET)
 	public ResponseEntity<?> listForumPosts(@PathVariable("forumid") int forumid,HttpSession session){
 		if(session.getAttribute("username")==null){
 			Error error = new Error(5, "Unauthorized User");
@@ -159,6 +166,29 @@ public class ForumController {
 		List<ForumPosts> forumposts = forpostdao.getAllForumPosts(forumid);
 		return new ResponseEntity<List<ForumPosts>>(forumposts,HttpStatus.OK);
 		
+	}
+	
+	@RequestMapping(value="/getjoinreq/{status}",method=RequestMethod.GET)
+	public ResponseEntity<?> getJoinRequests(@PathVariable("status") int joinstatus,HttpSession session){
+		if(session.getAttribute("username")==null){
+			Error error = new Error(5, "Unauthorized User");
+			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
+		}
+		List<ForumRequest> forumreq = forjoindao.getJoinRequests(joinstatus);
+		return new ResponseEntity<List<ForumRequest>>(forumreq,HttpStatus.OK);
+		
+	}
+	
+	@RequestMapping(value="/acceptjoinreq/{reqid}",method=RequestMethod.POST)
+	public ResponseEntity<?> acceptJoinReq(@PathVariable("reqid") int requestid,HttpSession session){
+		if(session.getAttribute("username")==null){
+			Error error = new Error(5, "Unauthorized User");
+			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
+		}
+		ForumRequest forreq = forjoindao.getRequestById(requestid);
+		forreq.setReqstatus(true);
+		forjoindao.acceptJoinReq(forreq);
+		return new ResponseEntity<ForumRequest>(forreq,HttpStatus.OK);
 	}
 		
 }

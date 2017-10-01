@@ -1,0 +1,30 @@
+<div ng-show="currentUser.role=='ADMIN'">
+	<h4>List Of Forum Join Requests for Approval</h4>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>ForumTitle</th>
+				<th>Request By</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="forreq in joinreq">
+				<td><a href="#!getforumbyid/{{forreq.forumid}}">{{forreq.forumTitle}}</a></td>
+				<td>{{forreq.joinuser}}</td>
+				<td>
+					<div class="switch">
+						<label> Disable <input type="checkbox"
+							ng-model="blog.approved" ng-change="acceptJoinReq(forreq.reqid)">
+							<span class="lever"></span> Active
+						</label>
+					</div>
+				</td>
+			</tr>
+			<tr ng-show="reqmess!=null">
+				<td colspan=4 style="color: #ff6666;"><h3>{{reqmess}}</h3></td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>

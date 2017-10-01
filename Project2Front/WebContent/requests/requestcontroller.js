@@ -71,7 +71,7 @@ app.controller('ReqController',function(UserService,BlogService,ForumService,$sc
 	
 	$scope.changeForumStatus=function(id){
 		ForumService.changeForumStatus(id).then(function(response){
-			$scope.changeblogStatus = response.data;
+			$scope.changeForumStatus = response.data;
 			Materialize.toast('Forum Approved..!',2000);
 			$route.reload();
 		},function(response){
@@ -79,5 +79,32 @@ app.controller('ReqController',function(UserService,BlogService,ForumService,$sc
 			$location.path('/home')
 		})
 		}
+	
+	ForumService.getJoinRequests().then(function(response){
+		$scope.joinreq = response.data
+		$rootScope.reqlen = response.data.length
+		$cookieStore.put("reqlen",response.data.length)
+		if(response.data == ""){
+			$scope.reqmess="No New Join Requests..!"
+		}
+		console.log(response.status + "forumjoinReq")
+	},function(response){
+		if(response.status==401){
+			$scope.error=response.data
+			$location.path('/login')
+		}
+	})
+	
+	$scope.acceptJoinReq=function(reqid){
+		ForumService.acceptJoinReq(reqid).then(function(response){
+			Materialize.toast('Forum Join Request Approved..!',2000);
+			$route.reload();
+		},function(response){
+			if(response.status==401){
+				$scope.error=response.data
+				$location.path('/login')
+			}
+		})
+	}
 	
 })

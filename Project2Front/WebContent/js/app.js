@@ -86,6 +86,12 @@ app.config(function($routeProvider) {
 	
 	})
 	
+	.when('/request/joinforum',{
+		templateUrl:'forum/forumjoin.html',
+		controller:'ForumDetailController'
+	
+	})
+	
 	.when('/viewblogs',{
 		templateUrl:'blog/viewblogs.html',
 		controller:'BlogController'
@@ -132,6 +138,9 @@ app.run(function(AuthService,$rootScope,$cookieStore,$location) {
 	}
 	if($rootScope.forlen==undefined){
 		$rootScope.forlen=$cookieStore.get("forlen")
+	}
+	if($rootScope.reqlen==undefined){
+		$rootScope.reqlen=$cookieStore.get("reqlen")
 	}
 	
 		$rootScope.logout=function(){

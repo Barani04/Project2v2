@@ -15,6 +15,10 @@ public class ForumRequest {
 	private String joinuser;
 	
 	private int forumid;
+	
+	private String forumTitle;
+	
+	private boolean reqstatus;
 
 	public int getReqid() {
 		return reqid;
@@ -38,6 +42,22 @@ public class ForumRequest {
 
 	public void setForumid(int forumid) {
 		this.forumid = forumid;
+	}
+
+	public boolean isReqstatus() {
+		return reqstatus;
+	}
+
+	public void setReqstatus(boolean reqstatus) {
+		this.reqstatus = reqstatus;
+	}
+
+	public String getForumTitle() {
+		return forumTitle;
+	}
+
+	public void setForumTitle(String forumTitle) {
+		this.forumTitle = forumTitle;
 	}
 	
 	

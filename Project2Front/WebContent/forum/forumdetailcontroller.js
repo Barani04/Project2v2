@@ -2,7 +2,7 @@
  * Forum Detail Controller
  */
 
-app.controller('ForumDetailController',function(ForumService,$location,$scope,$routeParams,$rootScope){
+app.controller('ForumDetailController',function(ForumService,$location,$scope,$routeParams,$rootScope,$route,$cookieStore){
 	var forumid = $routeParams.id
 	
 	$scope.forumpost={}
@@ -24,6 +24,9 @@ app.controller('ForumDetailController',function(ForumService,$location,$scope,$r
 			$scope.isparticipant =false
 			if(response.data ==""){
 				$scope.isparticipant = true
+			}
+			if(response.data !=""){
+			$scope.participant= response.data
 			}
 			console.log($scope.isparticipant)
 		},function(response){
@@ -72,4 +75,7 @@ app.controller('ForumDetailController',function(ForumService,$location,$scope,$r
 			}
 		})
 	}
+	
+	
+	
 })

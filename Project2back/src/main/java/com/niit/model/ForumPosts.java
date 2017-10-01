@@ -30,6 +30,7 @@ public class ForumPosts {
 	
 	private int forid;
 	
+	
 	private String postedBy;
 	
 	private String description;
@@ -84,6 +85,5 @@ public class ForumPosts {
 	public void setPostedBy(String postedBy) {
 		this.postedBy = postedBy;
 	}
-
 	
 }

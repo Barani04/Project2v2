@@ -53,5 +53,13 @@ app.factory('ForumService',function($http){
 	forumService.listForumPosts = function(forumid) {
 		return $http.get(BASE_URL+"/list/forumpost/"+forumid)
 	}
+	
+	forumService.getJoinRequests = function(){
+		return  $http.get(BASE_URL+"/getjoinreq/"+0)
+	}
+	
+	forumService.acceptJoinReq = function(reqid) {
+		return $http.post(BASE_URL+"/acceptjoinreq/"+reqid) 
+	}
 	return forumService;
 })

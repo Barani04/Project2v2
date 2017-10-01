@@ -41,12 +41,14 @@ html, body {
 					<li><a href="#!home" ng-show="currentUser.firstname">Home</a></li>
 					<!-- Requests Start-->
 					<ul id="dropdown" class="dropdown-content">
-						<li><a class="nav-link " href="#!request/useracc">Users<span
+						<li><a class="nav-link " href="#!request/useracc">Users<span ng-show="ul != 0"
 								class="new badge">{{ul}}</span></a></li>
-						<li><a class="nav-link" href="#!request/getallBlogs">Blogs<span
+						<li><a class="nav-link" href="#!request/getallBlogs">Blogs<span ng-show="len != 0"
 								class="new badge">{{len}}</span></a></li>
-						<li><a class="nav-link" href="#!request/getallforum">Forums<span
+						<li><a class="nav-link" href="#!request/getallforum">Forums<span ng-show="forlen != 0"
 								class="new badge">{{forlen}}</span></a></li>
+						<li><a class="nav-link" href="#!request/joinforum">Forum Join Requests<span ng-show="reqlen != 0"
+								class="new badge">{{reqlen}}</span></a></li>
 					</ul>
 					<li ng-show="currentUser.role=='ADMIN'"><a
 						class="dropdown-button " href="#" data-activates="dropdown">Request</a></li>
