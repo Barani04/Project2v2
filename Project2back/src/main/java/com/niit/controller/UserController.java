@@ -52,7 +52,7 @@ public class UserController {
 		User validuser = userdao.login(user);
 		System.out.println(user.getEmail() + "--" + user.getUsername() + "--" + user.getPassword() + "--"
 				+ user.getFirstname() + "--" + user.getLastname() + "--" + user.getPhonenumber());
-		if (validuser == null) {
+		if (validuser.getUsername() == null) {
 			Error error = new Error(4, "Invalid Username/Password");
 			return new ResponseEntity<Error>(error, HttpStatus.UNAUTHORIZED);
 		}
