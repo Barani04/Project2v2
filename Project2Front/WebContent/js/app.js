@@ -88,7 +88,7 @@ app.config(function($routeProvider) {
 	
 	.when('/request/joinforum',{
 		templateUrl:'forum/forumjoin.html',
-		controller:'ForumDetailController'
+		controller:'ReqController'
 	
 	})
 	

@@ -84,6 +84,7 @@ app.controller('ReqController',function(UserService,BlogService,ForumService,$sc
 		$scope.joinreq = response.data
 		$rootScope.reqlen = response.data.length
 		$cookieStore.put("reqlen",response.data.length)
+		console.log(response.data)
 		if(response.data == ""){
 			$scope.reqmess="No New Join Requests..!"
 		}
