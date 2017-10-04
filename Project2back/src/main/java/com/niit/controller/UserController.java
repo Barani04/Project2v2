@@ -52,6 +52,7 @@ public class UserController {
 		User validuser = userdao.login(user);
 		System.out.println(user.getEmail() + "--" + user.getUsername() + "--" + user.getPassword() + "--"
 				+ user.getFirstname() + "--" + user.getLastname() + "--" + user.getPhonenumber());
+		try{
 		if (validuser.getUsername() == null) {
 			Error error = new Error(4, "Invalid Username/Password");
 			return new ResponseEntity<Error>(error, HttpStatus.UNAUTHORIZED);
@@ -59,6 +60,10 @@ public class UserController {
 		else if(validuser.isActivated()==false){
 			Error error = new Error(8,"Your Account is not yet activated..!Wait for Activation Mail");
 			return new ResponseEntity<Error>(error, HttpStatus.NOT_ACCEPTABLE);
+		}
+		}catch (Exception e) {
+			Error error = new Error(11, "Invalid Username/Password");
+			return new ResponseEntity<Error>(error, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		validuser.setOnline(true);
 		userdao.update(validuser);

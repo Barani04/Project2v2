@@ -50,12 +50,12 @@ app.controller('AuthController',function(AuthService,UserService,BlogService,For
 			})
 			
 		},function(response){
-			if(response.status=401){
+			if(response.status==401 || response.status==500){
 				$scope.error = response.data
 				console.log(response.status)
 				$location.path('/login')
 			}
-			if(response.status=406){
+			if(response.status==406){
 				$scope.error = response.data
 				console.log(response.status)
 				$location.path('/login')
